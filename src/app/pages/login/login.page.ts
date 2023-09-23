@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
+import { LoginService } from 'src/app/services/login.service';
 
 import { StorageService } from 'src/app/services/storage.service';
-
-import { inject } from '@angular/core';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-login',
@@ -13,28 +11,83 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  @ViewChild('passwordEyeLogin', { read: ElementRef }) passwordEye!: ElementRef;
+  passwordTypeInput = 'password';
+  formLogin: FormGroup;
+  errormsg!: String;
+
   constructor(
-    private storage: StorageService,
-    private firestore: AngularFirestore
-  ) {}
-
-  ngOnInit() {}
-
-  async prueba() {
-    //await this.storage.set('prueba', 'valor para storage');
-    //await this.storage.set('prueba2', { msg: 'valor storage json' });
-    this.firestore.collection('usuarios').snapshotChanges().subscribe((resp) => {
-      resp.map((e) => {
-        console.log(e.payload.doc.id);
-        console.log(e.payload.doc.get('nombre'));
-        console.log(e.payload.doc.get('apellido'));
-      })
-      
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private navCtrl: NavController,
+    private storage: StorageService
+  ) {
+    this.formLogin = this.formBuilder.group({
+      email: [
+        'admin@admin.com',
+        [
+          Validators.required,
+          //Validators.pattern('[a-z0-9.S]+'),
+          Validators.minLength(4),
+          Validators.maxLength(30),
+        ],
+      ],
+      password: ['admin*123', [Validators.required, Validators.minLength(4)]],
     });
   }
 
-  async borrarStorage() {
-    //await this.storage.removeByKey('prueba');
-    await this.storage.clearAll();
+  ngOnInit() {}
+
+  login() {
+    console.log(this.formLogin.value);
+    const { email, password } = this.formLogin.value;
+    this.loginService
+      .loginWithEmailAndPassword(email, password)
+      .then((resp) => {
+        console.log(resp);
+        if (resp.user) {
+          this.navCtrl.navigateRoot('home');
+        }
+      })
+      .catch((err) => {
+        console.log(err);        
+      });
+  }
+
+  togglePasswordMode() {
+    this.passwordTypeInput =
+      this.passwordTypeInput === 'text' ? 'password' : 'text';
+    const nativeEl = this.passwordEye.nativeElement.querySelector('input');
+    const inputSelection = nativeEl.selectionStart;
+    nativeEl.focus();
+    setTimeout(() => {
+      nativeEl.setSelectionRange(inputSelection, inputSelection);
+    }, 1);
+  }
+
+  getEmailMessage() {
+    if (this.formLogin.controls['email'].hasError('required')) {
+      return 'Este campo es requerido';
+    }
+    /*if (this.formLogin.controls['email'].hasError('pattern')) {
+      return 'Valor de campo invalido (Ej. "juanito.perez" o "vflores")';
+    }*/
+    if (
+      this.formLogin.controls['email'].hasError('maxLength') != null ||
+      this.formLogin.controls['email'].hasError('minLength') != null
+    ) {
+      return 'Mínimo 4 caracteres, máximo 30 caracteres';
+    }
+    return;
+  }
+
+  getPasswordMessage() {
+    if (this.formLogin.controls['password'].hasError('required')) {
+      return 'Este campo es requerido';
+    }
+    if (this.formLogin.controls['password'].hasError('minLength') != null) {
+      return 'Mínimo 4 caracteres';
+    }
+    return;
   }
 }
