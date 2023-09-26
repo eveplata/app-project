@@ -13,40 +13,49 @@
   
 </ion-content>-->
 
-<ion-content>  
-  <div>
-    <ion-card>
-      <ion-card-header>
-          <!-- <img src="assets/escudo_ucb_azul.png" /> -->
-      </ion-card-header>
+<ion-content [fullscreen]="true"> 
+  <ion-card>
+    <ion-card-header>
+        <!-- <img src="assets/escudo_ucb_azul.png" /> -->
+    </ion-card-header>
 
-      <ion-card-content>
+    <ion-card-content>
 
-        <form [formGroup]="formLogin" (ngSubmit)="login()">
-          <ion-item>
-              <ion-input
+      <form [formGroup]="formLogin" (ngSubmit)="login()">
+        <ion-item>
+            <ion-input
               label="Email"
               labelPlacement="floating"
               formControlName="email"
               name="email"
               type="text"
               [class.is-danger]="formLogin.get('email')?.dirty && formLogin.get('email')?.invalid"
-              >
-              </ion-input>
-              <ion-icon 
+            ></ion-input>
+            <ion-icon 
               class="iconEye"
               slot="end"
               color="primary"
               name="person-outline"></ion-icon>
-              
-          </ion-item>
+            
+        </ion-item>
+        <!--<ion-label
+            *ngIf="formLogin.get('email')?.dirty && formLogin.get('email')?.invalid || formLogin.controls['email'].invalid && formLogin.controls['email'].touched"
+            color="danger"
+            >{{ getEmailMessage() }}</ion-label>-->
+        <ng-container *ngFor="let validation of validation_messages.email">
           <ion-label
-              *ngIf="formLogin.get('email')?.dirty && formLogin.get('email')?.invalid || formLogin.controls['email'].invalid && formLogin.controls['email'].touched"
-              color="danger"
-              >{{ getEmailMessage() }}</ion-label
+            color="danger"
+            *ngIf="
+              formLogin.get('email')?.hasError(validation.type) &&
+              (formLogin.get('email')?.dirty ||
+                formLogin.get('email')?.touched)
+            "
           >
-          <ion-item>
-              <ion-input
+            {{ validation.message }}
+          </ion-label>
+        </ng-container>
+        <ion-item>
+            <ion-input
               label="Contraseña"
               labelPlacement="floating"
               formControlName="password"
@@ -55,34 +64,44 @@
               [type]="passwordTypeInput"
               placeholder="Ingrese su contraseña"
               [class.is-danger]="formLogin.get('password')?.dirty && formLogin.get('password')?.invalid"
-              >
-              </ion-input>
-              <ion-icon
+            ></ion-input>
+            <ion-icon
               class="iconEye"
               slot="end"
               (click)="togglePasswordMode()"
               color="primary"
               [name]="(passwordTypeInput == 'text') ? 'eye-off-outline' : 'eye-outline'"
-              ></ion-icon>
-          </ion-item>
+            ></ion-icon>
+        </ion-item>
+        <!--<ion-label
+            *ngIf="formLogin.get('password')?.dirty && formLogin.get('password')?.invalid || formLogin.controls['password'].invalid && formLogin.controls['password'].touched"
+            color="danger"
+            >{{ getPasswordMessage() }}</ion-label>-->
+        <ng-container *ngFor="let validation of validation_messages.password">
           <ion-label
-              *ngIf="formLogin.get('password')?.dirty && formLogin.get('password')?.invalid || formLogin.controls['password'].invalid && formLogin.controls['password'].touched"
-              color="danger"
-              >{{ getPasswordMessage() }}</ion-label>
-          <ion-item-divider color="#ffffff"></ion-item-divider>
-          <ion-button
-              color="primary"
-              type="submit"
-              expand="full"
-              size="default"
-              [disabled]="formLogin.invalid"
-              >Ingresar</ion-button>
+            color="danger"
+            *ngIf="
+              formLogin.get('password')?.hasError(validation.type) &&
+              (formLogin.get('password')?.dirty ||
+                formLogin.get('password')?.touched)
+            "
+          >
+            {{ validation.message }}
+          </ion-label>
+        </ng-container>
 
-          <ion-label id="error" color="danger"
-              >{{ errormsg != null ? errormsg : '' }}</ion-label>
-        </form>
-        
-      </ion-card-content>
-    </ion-card>
-  </div>
+        <ion-button
+            color="primary"
+            type="submit"
+            expand="full"
+            size="default"
+            [disabled]="formLogin.invalid"
+            >Ingresar</ion-button>
+
+        <ion-label id="error" color="danger"
+            >{{ errorMsg != null ? errorMsg : '' }}</ion-label>
+      </form>
+      
+    </ion-card-content>
+  </ion-card>
 </ion-content>
