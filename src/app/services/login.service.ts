@@ -27,7 +27,21 @@ export class LoginService {
   }
 
   exitUser(): Observable<boolean> {
-    return of(this.user != null ? true : false);
+    return this.getUserAuth().pipe(
+      switchMap((user) => {
+        const exist = user === null ? false : true;
+        return of(exist);
+      })
+    );
+  }
+
+  exitAuth(): Observable<boolean> {
+    return this.getUserAuth().pipe(
+      switchMap((user) => {
+        const exist = user === null ? true : false;
+        return of(exist);
+      })
+    );
   }
 
   loginWithEmailAndPassword(email: string, password: string) {

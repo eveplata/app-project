@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Storage } from '@ionic/storage-angular';
-import { Observable, from, map } from 'rxjs';
+import { Observable, from, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,24 +26,26 @@ export class StorageService {
   }
 
   async get(key: string) {
-    const data = await this._storage?.get(key);
+    const data = await this.storage.get(key);
     return data;
   }
 
   async removeByKey(key: string) {
-    await this._storage?.remove(key);
+    await this.storage.remove(key);
   }
 
   async clearAll() {
-    await this._storage?.clear();
+    await this.storage.clear();
   }
 
   getStorageData(key: string): Observable<any> {
-    const data = this._storage?.get(key) || '';
-    return from(data).pipe(
+    return from(this.storage.get(key)).pipe(
       map((data: any) => {
+        console.log(data);
+        
         return data;
       })
     );
+    //return of(data);
   }
 }

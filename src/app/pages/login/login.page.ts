@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   @ViewChild('passwordEyeLogin', { read: ElementRef }) passwordEye!: ElementRef;
   passwordTypeInput = 'password';
   formLogin: FormGroup;
-  errorMsg: String = '';
+  errorMsg: String = 'No se pudo iniciar sesión';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,8 +36,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async login() {
     console.log(this.formLogin.value);
@@ -48,7 +47,9 @@ export class LoginPage implements OnInit {
       .then((resp) => {
         loading.dismiss();
         console.log(resp);
+        console.log(resp.user?.uid);
         if (resp.user) {
+          this.storage.set('uid', resp.user?.uid);
           this.navCtrl.navigateRoot('home');
         }
       })

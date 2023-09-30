@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { from } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,13 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  loading: boolean = true;
+  uid!: string;
+
   constructor(
     private loginService: LoginService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private storage: StorageService
   ) {}
 
   ngOnInit() {
@@ -19,13 +25,18 @@ export class HomePage implements OnInit {
         console.log('get user home', user);
       }
     );*/
-    this.loginService.getUserAuth().subscribe(resp => {
-      console.log(resp);      
+    this.storage.getStorageData('uid').subscribe((resp) => {
+      console.log('uid', resp);
+      
+      this.loading = false;
+      this.uid = resp;
     });
-    
+    /*this.loginService.getUserAuth().subscribe((resp) => {
+      console.log('AUTH', resp);
+    });*/
   }
 
-  salir() {
+  cerrarSession() {
     console.log('clic');
     this.loginService
       .logout()
@@ -34,7 +45,9 @@ export class HomePage implements OnInit {
         this.navCtrl.navigateRoot('login');
       })
       .catch((err) => {
-        console.log(err);        
+        console.log(err);
       });
   }
+
+  solicitar() {}
 }

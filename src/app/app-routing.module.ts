@@ -25,6 +25,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     canLoad: [AuthGuard],
   },
+  {
+    path: 'solicitar-productos',
+    loadChildren: () =>
+      import('./pages/solicitar-productos/solicitar-productos.module').then(
+        (m) => m.SolicitarProductosPageModule
+      ),
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+  },
 ];
 
 @NgModule({

@@ -14,18 +14,18 @@ export class LoginGuard implements CanActivate, CanLoad {
   ) {}
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    return this.loginService.exitUser().pipe(
+    return this.loginService.exitAuth().pipe(
       tap((valid) => {
         console.log('canActivate login', valid);
-        if (valid) this.navCtrl.navigateRoot('home');
+        if (!valid) this.navCtrl.navigateRoot('home');
       })
     );
   }
   canLoad(): Observable<boolean> | Promise<boolean> | boolean {
-    return this.loginService.exitUser().pipe(
+    return this.loginService.exitAuth().pipe(
       tap((valid) => {
         console.log('canLoad login', valid);
-        if (valid) this.navCtrl.navigateRoot('home');
+        if (!valid) this.navCtrl.navigateRoot('home');
       })
     );
   }

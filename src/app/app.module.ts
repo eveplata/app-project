@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { environment } from '../environments/environment';
+import { ComponentsModule } from './components/components.module';
 //import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 //import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -25,6 +26,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     AppRoutingModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
+    ComponentsModule,
     //provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     //provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebaseConfig),
