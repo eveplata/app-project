@@ -5,14 +5,14 @@ export interface Producto {
   estado: number;
   stock_min: number;
   cant_comp_prod: number;
-  categorias: Categorias;
+  categorias: CategoriasPdt;
   uni_med_prod: string;
   tipo_prod: string;
   cont_prod: number;
   id: string;
 }
 
-export interface Categorias {
+export interface CategoriasPdt {
   nombre: string;
   id_categorias?: string;
   id_categoria?: string;

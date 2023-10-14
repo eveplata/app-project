@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuariosService {
+  constructor(private firestore: AngularFirestore) {}
 
-  constructor(
-    private firestore: AngularFirestore
-  ) { }
+  getUsuarioEmpresas(id_usr: string): Observable<any> {
+    return this.firestore
+      .collection('usuario_empresa', (ref) => ref.where('id_usr', '==', id_usr))
+      .valueChanges({ idField: 'id' });
+  }
+
+  getUsuarioPorId(id_usr: string): Observable<any> {
+    return this.firestore
+      .collection('usuarios')
+      .doc(id_usr)
+      .valueChanges({ idField: 'id' });
+  }
 
   async prueba() {
     //await this.storage.set('prueba', 'valor para storage');

@@ -21,7 +21,7 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomePageModule),
-    pathMatch: 'full',
+    //pathMatch: 'full',
     canActivate: [AuthGuard],
     canLoad: [AuthGuard],
   },
@@ -31,8 +31,9 @@ const routes: Routes = [
       import('./pages/solicitar-productos/solicitar-productos.module').then(
         (m) => m.SolicitarProductosPageModule
       ),
+    /* pathMatch: 'full',
     canActivate: [AuthGuard],
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard], */
   },
 ];
 

@@ -49,5 +49,9 @@ export class HomePage implements OnInit {
       });
   }
 
+  navigateToPage(ruta: string) {
+    this.navCtrl.navigateForward(ruta);
+  }
+
   solicitar() {}
 }

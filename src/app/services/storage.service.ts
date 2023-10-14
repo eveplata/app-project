@@ -41,8 +41,7 @@ export class StorageService {
   getStorageData(key: string): Observable<any> {
     return from(this.storage.get(key)).pipe(
       map((data: any) => {
-        console.log(data);
-        
+        //console.log(data);        
         return data;
       })
     );
