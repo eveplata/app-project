@@ -44,8 +44,8 @@
                     </ion-label>
                 </ion-col>
                 <ion-col size="6">
-                    <ion-card color="light" routerLink="/perfil">
-                        <ion-icon name="person" color="primary"></ion-icon>
+                    <ion-card color="light" routerLink="/profile">
+                        <ion-icon name="person-outline" color="primary"></ion-icon>
                         <ion-text>
                             <p>Mi perfil</p>
                         </ion-text>
@@ -53,15 +53,19 @@
                 </ion-col>
                 <ion-col size="6">
                     <ion-card color="light" (click)="navigateToPage('/solicitar-productos')">
-                        <ion-icon name="cash-sharp" color="primary"></ion-icon>
+                        <ion-icon name="receipt-outline" color="primary"></ion-icon>
                         <ion-text>
                             <p>Solicitar Productos</p>
                         </ion-text>
+                        
                     </ion-card>
+                    
+
                 </ion-col>
                 <ion-col size="6">
                     <ion-card color="light" routerLink="/pagos">
-                        <ion-icon name="logo-usd" color="primary"></ion-icon>
+                        <ion-icon name="receipt-outline" color="primary"></ion-icon>
+                        
                         <ion-text>
                             <p>Historial de Solicitudes</p>
                         </ion-text>
@@ -71,7 +75,7 @@
                     <ion-card color="light" routerLink="/materias">
                         <ion-icon name="book-outline" color="primary"></ion-icon>
                         <ion-text>
-                            <p>Otro menu</p>
+                            <p>Solicitudes Pendientes</p>
                         </ion-text>
                     </ion-card>
                 </ion-col>

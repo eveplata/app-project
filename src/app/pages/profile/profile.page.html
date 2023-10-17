@@ -1,0 +1,149 @@
+
+<ion-content class="ion-padding">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button size="small">
+        <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+  <ion-toggle slot="end">Oscuro</ion-toggle>    
+  </ion-toolbar>
+
+  <ion-grid class="cuerpo">
+    <ion-row>
+      <ion-col size="12">
+          <ion-item lines="none" class="item-header" style="margin-top: -40px;">
+              <div class="background-image">
+                  <ion-img src="/../assets/images/logo.png" alt="Logo" class="logo"></ion-img>
+              </div>
+          </ion-item>
+      </ion-col>
+      <!-- card -->
+      <!-- <ion-card lines="none" class="item-header" style="margin-top: -75px;">
+        <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+        
+      </ion-card> -->
+      
+      <ion-col size="12" class="ion-text-center">
+        <div class="overlay-image">
+            <!-- <img [src]="user.datos.imagenPerfil" style="width: 30%" /> -->
+            <img src="/../assets/images/user.png" style="width: 30%" />
+        </div>
+        <ion-label class="title-user">
+            <ion-text color="primary">
+                <!-- Hola, {{ user.datos.nombreCompleto | titlecase }} -->
+                Hola, Usuario
+            </ion-text>
+        </ion-label>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+  
+  <ion-list>
+    <!-- <ion-item>
+      <ion-icon name="person-sharp" slot="start"></ion-icon>
+      <ion-label style="opacity: 0.5;">Nombre: </ion-label>
+      <br>
+      <ion-label style="margin-left: 10px;">Evelyn Plata Canaviri:</ion-label>
+    </ion-item> -->
+    <ion-item>
+      <ion-icon name="person-sharp" slot="start"></ion-icon>
+      <ion-label>
+        <table>
+          <tr>
+            <td style="opacity: 0.5;">Nombre:</td>
+          </tr>
+          <tr>
+            <td style="margin-left: 10px;">Evelyn Plata Canaviri</td>
+          </tr>
+        </table>
+      </ion-label>
+    </ion-item>
+    
+    
+    <ion-item>
+      <ion-icon name="mail" slot="start"></ion-icon>
+      <ion-label>
+        <table>
+          <tr>
+            <td style="opacity: 0.5;">Email:</td>
+          </tr>
+          <tr>
+            <td style="margin-left: 10px;">eplatacanaviri@gmail.com</td>
+          </tr>
+        </table>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="call" slot="start"></ion-icon>
+      <ion-label>
+        <table>
+          <tr>
+            <td style="opacity: 0.5;">Celular:</td>
+          </tr>
+          <tr>
+            <td style="margin-left: 10px;">68703865</td>
+          </tr>
+        </table>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="home" slot="start"></ion-icon>
+      <ion-label>
+        <table>
+          <tr>
+            <td style="opacity: 0.5;">Direccion:</td>
+          </tr>
+          <tr>
+            <td style="margin-left: 10px;">B/ San Jorge I</td>
+          </tr>
+        </table>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="calendar" slot="start"></ion-icon>
+      <ion-label>
+        <table>
+          <tr>
+            <td style="opacity: 0.5;">Fecha de Nacimiento:</td>
+          </tr>
+          <tr>
+            <td style="margin-left: 10px;">28/09/2023</td>
+          </tr>
+        </table>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="location" slot="start"></ion-icon>
+      <ion-label>
+        <table>
+          <tr>
+            <td style="opacity: 0.5;">Lugar de nacimiento:</td>
+          </tr>
+          <tr>
+            <td style="margin-left: 10px;">Tarija</td>
+          </tr>
+        </table>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="calendar-number" slot="start"></ion-icon>
+      <ion-label>
+        <table>
+          <tr>
+            <td style="opacity: 0.5;">Fecha de Ingreso</td>
+          </tr>
+          <tr>
+            <td style="margin-left: 10px;">01/07/2023</td>
+          </tr>
+        </table>
+      </ion-label>
+    </ion-item>
+    
+  </ion-list>
+
+
+
+  
+</ion-content>
+

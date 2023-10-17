@@ -1,0 +1,20 @@
+.background-image {
+    position: relative;
+  }
+  
+  .logo {
+    width: 100%; 
+    
+  }
+  
+  .overlay-image {
+    position: absolute;
+    top: -150px; 
+    left: 20px; 
+    z-index: 1; 
+}
+  
+  .user-image {
+    width: 30%;
+  }
+  

@@ -78,22 +78,34 @@ export class SolicitarProductosPage implements OnInit {
     }
   }
 
-  checkboxClick(e: any, producto: Producto) {
-    console.log(e.currentTarget.checked);
-    console.log('producto', producto);
-    if (e.currentTarget.checked) {
-      const existe = this.productosSeleccionados.find(
-        (p) => p.id === producto.id
-      );
-      if (existe == null) {
-        this.productosSeleccionados.push(producto);
-      }
-    } else {
-      this.productosSeleccionados = this.productosSeleccionados.filter(
-        (p) => p.id !== producto.id
-      );
+  // checkboxClick(e: any, producto: Producto) {
+  //   console.log(e.currentTarget.checked);
+  //   console.log('producto', producto);
+  //   if (e.currentTarget.checked) {
+  //     const existe = this.productosSeleccionados.find(
+  //       (p) => p.id === producto.id
+  //     );
+  //     if (existe == null) {
+  //       this.productosSeleccionados.push(producto);
+  //     }
+  //   } else {
+  //     this.productosSeleccionados = this.productosSeleccionados.filter(
+  //       (p) => p.id !== producto.id
+  //     );
+  //   }
+  //   console.log('this.productosSeleccionados', this.productosSeleccionados);
+  // }
+    checkboxClick(event: any, producto: Producto) {
+    const isChecked = event.currentTarget.checked;
+    const productoIndex = this.productosSeleccionados.findIndex((p) => p.id === producto.id);
+
+    if (isChecked && productoIndex === -1) {
+      // Si se marca el checkbox y el producto no está en la lista de seleccionados, agrégalo.
+      this.productosSeleccionados.push(producto);
+    } else if (!isChecked && productoIndex !== -1) {
+      // Si se desmarca el checkbox y el producto está en la lista de seleccionados, quítalo.
+      this.productosSeleccionados.splice(productoIndex, 1);
     }
-    console.log('this.productosSeleccionados', this.productosSeleccionados);
   }
 
   onWillDismiss(event: Event) {
