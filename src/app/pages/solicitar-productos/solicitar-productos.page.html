@@ -8,42 +8,39 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
-  <ion-list>
-    <ion-item>
-      <ion-select
-          placeholder="Seleccione la Empresa"
-          (ionChange)="handleChange($event)"
-          (ionCancel)="handleCancel()"
-          (ionDismiss)="handleDismiss()"
-        >
-          
-        <ion-select-option *ngFor="let e of usuarioEmpresas.empresas;" [value]="e">{{ e.nom_emp }}</ion-select-option>
-      </ion-select>
-    </ion-item>
 
-  <ion-button expand="block" (click)="setOpen(true)">Seleccionar Productos</ion-button>
-  <ion-button expand="block" (click)="solicitar()">solicitar</ion-button>
-  
-  <ion-modal [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-button (click)="setOpen(false)">Cancelar</ion-button>
-          </ion-buttons>
-          <ion-title>Productos</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="setOpen(false)" [strong]="true">Confirmar</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <ion-grid *ngIf="!isLoading">
+    <ion-row>
+      <ion-col size="12"> 
+      
         <ion-list>
+          <ion-item>
+            <ion-select
+                placeholder="Seleccione la Empresa"
+                (ionChange)="handleChange($event)"
+                (ionCancel)="handleCancel()"
+                (ionDismiss)="handleDismiss()"
+              >
+              <ion-select-option *ngFor="let e of usuarioEmpresas.empresas;" [value]="e">{{ e.nom_emp }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+        <ion-button expand="block" (click)="openModal()">Seleccionar Productos</ion-button>
+        <ion-button expand="block" (click)="solicitar()">solicitar</ion-button>
+
+        <app-seleccionar-productos 
+          [productosSeleccionados]="productosSeleccionados"
+          [isModalOpen]="isModalOpen"
+          (closeModal)="closeModal($event)" 
+          (sProductos)="sProductos($event)"></app-seleccionar-productos>
+
+        
+          <!-- lista productos seleccionados -->
           <!-- *ngFor="let de of notas.datos.detalleElementos; let indice = index" -->
-          <ion-card *ngFor="let p of productos;">
-            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+          <ion-card *ngFor="let p of productosSeleccionados;">
+            <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> -->
             <ion-card-header>
               <ion-card-title>{{ p.nom_prod }}</ion-card-title>
               <ion-card-subtitle>Categoría: {{ p.categorias.nombre }}</ion-card-subtitle>
@@ -53,33 +50,12 @@
               <ion-item>
                 <ion-label>Tipo: {{ p.tipo_prod }}</ion-label>
               </ion-item>
-              <ion-item>
-                <ion-checkbox labelPlacement="end" (ionChange)="checkboxClick($event, p)">Seleccionar producto</ion-checkbox>
-              </ion-item>
             </ion-card-content>
           </ion-card>
+          <!-- lista productos seleccionados -->
         </ion-list>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-
-  
-    <!-- lista productos seleccionados -->
-    <!-- *ngFor="let de of notas.datos.detalleElementos; let indice = index" -->
-    <ion-card *ngFor="let p of productosSeleccionados;">
-      <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> -->
-      <ion-card-header>
-        <ion-card-title>{{ p.nom_prod }}</ion-card-title>
-        <ion-card-subtitle>Categoría: {{ p.categorias.nombre }}</ion-card-subtitle>
-      </ion-card-header>
-
-      <ion-card-content>
-        <ion-item>
-          <ion-label>Tipo: {{ p.tipo_prod }}</ion-label>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-    <!-- lista productos seleccionados -->
-  </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   
 </ion-content>

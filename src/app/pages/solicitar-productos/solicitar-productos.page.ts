@@ -16,16 +16,14 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
   styleUrls: ['./solicitar-productos.page.scss'],
 })
 export class SolicitarProductosPage implements OnInit {
-  @ViewChild(IonModal) modal!: IonModal;
-  isModalOpen: boolean = false;
-  productos: Producto[] = [];
-  productosSeleccionados: Producto[] = [];
-
   id_usr!: string;
+  productosSeleccionados: Producto[] = [];
   usuarioEmpresas!: UsuarioEmpresas;
   empresaSeleccionada!: EmpresaUsrEp;
   solicitud!: Solicitud;
   usuario!: Usuario;
+  isLoading: boolean = true;
+  isModalOpen: boolean = false;
 
   constructor(
     private navCtrl: NavController,
@@ -40,7 +38,7 @@ export class SolicitarProductosPage implements OnInit {
   }
 
   getUID() {
-    this.storage.getStorageData('uid').subscribe(uid => {
+    this.storage.getStorageData('uid').subscribe((uid) => {
       console.log('uid', uid);
       this.id_usr = uid;
       this.usuarioEmpresasPorId(this.id_usr);
@@ -48,63 +46,41 @@ export class SolicitarProductosPage implements OnInit {
   }
 
   usuarioEmpresasPorId(uid: string) {
-    this.usuariosService
-      .getUsuarioEmpresas(uid)
-      .subscribe((resp) => {
-        this.usuarioEmpresas = resp[0];
-        console.log('usuarioEmpresas', this.usuarioEmpresas);
-        this.usuarioPorId();
-      });
+    this.usuariosService.getUsuarioEmpresas(uid).subscribe((resp) => {
+      this.usuarioEmpresas = resp[0];
+      console.log('usuarioEmpresas', this.usuarioEmpresas);
+      this.usuarioPorId();
+    });
   }
 
   usuarioPorId() {
     this.usuariosService.getUsuarioPorId(this.id_usr).subscribe((resp) => {
+      this.isLoading = false;
       this.usuario = resp;
       console.log('usuario', this.usuario);
     });
   }
 
   backToPage() {
-    this.navCtrl.navigateForward('home');
+    this.navCtrl.navigateBack('home');
   }
 
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
-    if (this.productos.length == 0) {
-      this.productosService.obtenerProductos().subscribe((resp) => {
-        this.productos = resp; //as unknown as Producto[]
-        console.log('productos', this.productos);
-      });
-    }
+  openModal() {
+    this.isModalOpen = true;
   }
 
-  checkboxClick(e: any, producto: Producto) {
-    console.log(e.currentTarget.checked);
-    console.log('producto', producto);
-    if (e.currentTarget.checked) {
-      const existe = this.productosSeleccionados.find(
-        (p) => p.id === producto.id
-      );
-      if (existe == null) {
-        this.productosSeleccionados.push(producto);
-      }
-    } else {
-      this.productosSeleccionados = this.productosSeleccionados.filter(
-        (p) => p.id !== producto.id
-      );
-    }
-    console.log('this.productosSeleccionados', this.productosSeleccionados);
+  closeModal(event: any) {
+    console.log(event);
+    this.isModalOpen = event;
   }
 
-  onWillDismiss(event: Event) {
-    //const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    /* if (ev.detail.role === 'confirm') {
-      this.message = `Hello, ${ev.detail.data}!`;
-    } */
+  sProductos(event: Producto[]){
+    console.log('emit de productos seleccionados', event); 
+    this.productosSeleccionados = event;
   }
 
   solicitar() {
-    console.log(this.productosSeleccionados);
+    /*console.log(this.productosSeleccionados);
     const productosSlt: ProductoSlt[] = [];
     for (let i = 0; i < this.productosSeleccionados.length; i++) {
       productosSlt.push({
@@ -112,7 +88,7 @@ export class SolicitarProductosPage implements OnInit {
         nom_prod: this.productosSeleccionados[i].nom_prod,
         prec_prod: this.productosSeleccionados[i].prec_prod,
         cantidad: null,
-        total: null
+        total: null,
       });
     }
     this.solicitud = {
@@ -120,21 +96,20 @@ export class SolicitarProductosPage implements OnInit {
         id_usr: this.usuario.id,
         nom_usr: this.usuario.nom_usr,
         primer_ap: this.usuario.primer_ap,
-        seg_ap: this.usuario.seg_ap
+        seg_ap: this.usuario.seg_ap,
       },
       empresa: this.empresaSeleccionada,
       productos: productosSlt,
       estado: 1,
       comentario: null,
       fecha_solicitud: new Date(),
-    }
+    };
 
     console.log('solicitud', this.solicitud);
-    this.solicitudesService.crearSolicitud(this.solicitud).subscribe(resp => {
-      console.log('resp crear solicitud', resp);      
-      console.log('resp crear solicitud', resp.id);      
-    });
-
+    this.solicitudesService.crearSolicitud(this.solicitud).subscribe((resp) => {
+      console.log('resp crear solicitud', resp);
+      console.log('resp crear solicitud', resp.id);
+    });*/
   }
 
   handleChange(e: any) {
