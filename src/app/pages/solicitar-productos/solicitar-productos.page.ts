@@ -80,7 +80,7 @@ export class SolicitarProductosPage implements OnInit {
   }
 
   solicitar() {
-    /*console.log(this.productosSeleccionados);
+    console.log(this.productosSeleccionados);
     const productosSlt: ProductoSlt[] = [];
     for (let i = 0; i < this.productosSeleccionados.length; i++) {
       productosSlt.push({
@@ -103,13 +103,15 @@ export class SolicitarProductosPage implements OnInit {
       estado: 1,
       comentario: null,
       fecha_solicitud: new Date(),
+      id_emp: this.empresaSeleccionada.id_emp,
+      id_usr: this.usuario.id
     };
 
     console.log('solicitud', this.solicitud);
     this.solicitudesService.crearSolicitud(this.solicitud).subscribe((resp) => {
       console.log('resp crear solicitud', resp);
       console.log('resp crear solicitud', resp.id);
-    });*/
+    });
   }
 
   handleChange(e: any) {

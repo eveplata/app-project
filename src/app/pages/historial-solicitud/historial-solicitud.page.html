@@ -15,11 +15,15 @@
     <ion-grid *ngIf="!isLoading">
       <ion-list>
         <!-- Historial de solicitudes -->
-        <ion-item>
+        <!-- aqui usamos *ngFor para mostrar el historial el ngFor solo se usa si lo que mostramos es un array -->
+        <ion-item *ngFor="let h of historial;">
           <ion-icon slot="start" name="receipt-outline" color="primary"></ion-icon>
           <ion-label>
-            <h2>holi</h2>
-            <p>Estado:</p>
+            <!-- de esta forma recuperas la fecha para que se muestre en el formato año/mes/dia hora/minuto/ segundo -->
+            <h2>{{ h.fecha_solicitud['seconds'] * 1000 | date:'yyyy/MM/dd h:mm:ss a' }}</h2>
+            <p>Estado: {{ h.estado }}</p>
+            <!-- aqui vamos a crear una funcion para mostrar en ves de valor numerico un nombre literal de lo que significa el valor la funcion esta en .ts  -->
+            <p>Estado: {{ getValorEstado(h.estado) }}</p>
           </ion-label>
         </ion-item>
       </ion-list>

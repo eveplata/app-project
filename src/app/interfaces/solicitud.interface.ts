@@ -5,8 +5,15 @@ export interface Solicitud {
   productos: ProductoSlt[];
   estado: number;
   comentario: string | null;
-  fecha_solicitud: Date;
+  fecha_solicitud: FechaSolicitud | Date | any;
   id?: string;
+  id_emp: string;
+  id_usr: string;
+}
+
+export interface FechaSolicitud {
+  seconds: number;
+  nanoseconds: number;
 }
 
 export interface EmpresaSlt {
