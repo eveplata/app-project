@@ -40,6 +40,12 @@ const routes: Routes = [
     loadChildren: () => 
     import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   },
+  {
+    path: 'historial-solicitud',
+    loadChildren: () => 
+    import('./pages/historial-solicitud/historial-solicitud.module').then( m => m.HistorialSolicitudPageModule)
+  },
+
 
 
 ];

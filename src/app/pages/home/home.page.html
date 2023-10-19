@@ -45,16 +45,20 @@
                 </ion-col>
                 <ion-col size="6">
                     <ion-card color="light" routerLink="/profile">
+                        <!-- <ion-card color="light" (click)="navigateToPage('/profile)"></ion-card>-->
                         <ion-icon name="person-outline" color="primary"></ion-icon>
-                        <ion-text>
+                        <!-- <ion-text>
                             <p>Mi perfil</p>
-                        </ion-text>
+                        </ion-text> -->
+                        <ion-text class="ion-text-center">
+                            <p>Mi perfil</p>
+                          </ion-text>
                     </ion-card>
                 </ion-col>
                 <ion-col size="6">
                     <ion-card color="light" (click)="navigateToPage('/solicitar-productos')">
                         <ion-icon name="receipt-outline" color="primary"></ion-icon>
-                        <ion-text>
+                        <ion-text class="ion-text-center">
                             <p>Solicitar Productos</p>
                         </ion-text>
                         
@@ -63,10 +67,11 @@
 
                 </ion-col>
                 <ion-col size="6">
-                    <ion-card color="light" routerLink="/pagos">
+                    <ion-card color="light" (click)="navigateToPage('/historial-solicitud')">
+                        <!-- <ion-card color="light" routerLink="/historial-solicitud"> -->
                         <ion-icon name="receipt-outline" color="primary"></ion-icon>
                         
-                        <ion-text>
+                        <ion-text class="ion-text-center">
                             <p>Historial de Solicitudes</p>
                         </ion-text>
                     </ion-card>
@@ -74,12 +79,12 @@
                 <ion-col size="6">
                     <ion-card color="light" routerLink="/materias">
                         <ion-icon name="book-outline" color="primary"></ion-icon>
-                        <ion-text>
+                        <ion-text class="ion-text-center">
                             <p>Solicitudes Pendientes</p>
                         </ion-text>
                     </ion-card>
                 </ion-col>
-                <ion-col size="6">
+                <!-- <ion-col size="6">
                     <ion-card color="light" routerLink="/horarios">
                         <ion-icon name="calendar-outline" color="primary"></ion-icon>
                         <ion-text>
@@ -94,7 +99,7 @@
                             <p>Otro menu</p>
                         </ion-text>
                     </ion-card>
-                </ion-col> 
+                </ion-col>  -->
             </ion-row>
         </ion-grid>
     </ion-grid>

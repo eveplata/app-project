@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-button size="small">
+        <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Historial de Solicitudes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+    <ion-grid *ngIf="!isLoading">
+      <ion-list>
+        <!-- Historial de solicitudes -->
+        <ion-item>
+          <ion-icon slot="start" name="receipt-outline" color="primary"></ion-icon>
+          <ion-label>
+            <h2>holi</h2>
+            <p>Estado:</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-grid>
+</ion-content>
+

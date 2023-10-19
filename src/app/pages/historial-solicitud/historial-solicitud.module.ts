@@ -4,19 +4,20 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProfilePageRoutingModule } from './profile-routing.module';
+import { HistorialSolicitudPageRoutingModule } from './historial-solicitud-routing.module';
 
-import { ProfilePage } from './profile.page';
+import { HistorialSolicitudPage } from './historial-solicitud.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ProfilePageRoutingModule,
+    HistorialSolicitudPageRoutingModule,
     ComponentsModule,
   ],
-  declarations: [ProfilePage]
+  declarations: [HistorialSolicitudPage]
 })
-export class ProfilePageModule {}
+export class HistorialSolicitudPageModule {}

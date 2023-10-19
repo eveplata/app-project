@@ -1,6 +1,7 @@
 export interface Usuario {
   seg_ap: string;
   dir_usr: string;
+  cel_usr: number;
   primer_ap: string;
   fec_nac: Date;
   fec_reg_ing: Date;
