@@ -1,0 +1,53 @@
+.inline-label {
+    display: inline-block; 
+    margin-right: 10px; 
+  }
+
+  .custom-image {
+    width: 300px; /* Ancho deseado */
+    height: 150px; /* Alto deseado, ajusta esto para hacerlo cuadrado */
+    object-fit: cover; /* Para asegurarte de que la imagen se ajuste al cuadro sin deformarse */
+  }
+
+  .quantity-input-fancy {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Alinea horizontalmente los elementos */
+    font-family: Arial, sans-serif;
+    font-size: 10px; /* Aumentamos el tamaño de fuente para móviles */
+  }
+  
+  .quantity-button {
+    background-color: #f0f0f0;
+    color: #555;
+    border: none;
+    cursor: pointer;
+    padding: 5px; /* Ajustamos el espacio de los botones */
+    width: 20px; /* Establecemos un ancho fijo para los botones */
+    height: 20px; /* Establecemos una altura fija para los botones */
+    border-radius: 50%;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 8px; /* Aumentamos el tamaño de fuente para móviles */
+    margin: 0; /* Eliminamos el margen en todos los lados */
+  }
+  
+  .quantity-input {
+    width: 20px; /* Establecemos un ancho fijo para el campo de entrada */
+    height: 20px; /* Establecemos una altura fija para el campo de entrada */
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0; /* Eliminamos el espacio interno para que sea cuadrado */
+    outline: none;
+    font-size: 6px; /* Aumentamos el tamaño de fuente para móviles */
+  }
+  
+  /* Estilos para los botones de incremento y decremento */
+  .decrement {
+    margin-right: 3px;
+  }
+  
+  .increment {
+    margin-left: 3px;
+  }
+  

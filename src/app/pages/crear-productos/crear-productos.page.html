@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-button size="small">
+        <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card class="ion-padding">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center ion-text-uppercase">Nuevo Producto</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked" >Nombre del Producto</ion-label>
+          <ion-input [(ngModel)]="producto.nom_prod" name="nombre" type="text" required></ion-input>
+        </ion-item>  
+
+        <ion-item>
+          <ion-label position="stacked">Categoría</ion-label>
+          <ion-select required [(ngModel)]="producto.categorias.nombre" name="categoria">
+            <ion-select-option *ngFor="let c of categorias" [value]="c.id">
+              {{ c.nombre_ctg }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Marca</ion-label>
+          <ion-input [(ngModel)]="producto.marca" name="marca" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Contenido</ion-label>
+          <ion-input [(ngModel)]="producto.cont_prod" name="contenido" type="number" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Medida</ion-label>
+          <ion-input [(ngModel)]="producto.uni_med_prod" name="unidades" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Precio</ion-label>
+          <ion-input [(ngModel)]="producto.prec_prod" name="precio" type="number" required></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="stacked">Tipo</ion-label>
+          <ion-input [(ngModel)]="producto.tipo_prod" name="tipo" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Stock</ion-label>
+          <ion-input [(ngModel)]="producto.stock_act" name="stock" type="number" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label  class="normal">Imagen</ion-label>
+            <ion-buttons slot="end">
+              <ion-button>
+                <label for = "file-upload">                
+                  <ion-icon slot="icon-only" name="images"></ion-icon>
+                </label>
+                <input (change)="newImage($event)" id="file-upload" type="file" accept="image/*" style="display: none;" #fileInput>
+              </ion-button>
+            </ion-buttons>
+         </ion-item>
+
+         <img [src]="nuevaImagen">
+          
+                   
+<!--         
+        <ion-item>
+          <ion-label position="stacked">Estado del Producto</ion-label>
+          <ion-select [(ngModel)]="producto.estado" name="estado">
+            <ion-select-option [value]="1">Activo</ion-select-option>
+            <ion-select-option [value]="0">Inactivo</ion-select-option>
+          </ion-select>
+        </ion-item>         -->
+      </ion-list>
+      <ion-button expand="full" color="primary" (click)="crearProducto()">Guardar Producto</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

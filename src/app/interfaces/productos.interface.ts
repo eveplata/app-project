@@ -9,6 +9,8 @@ export interface Producto {
   uni_med_prod: string;
   tipo_prod: string;
   cont_prod: number;
+  marca: string;
+  imagen: string;
   id: string;
 }
 

@@ -14,6 +14,13 @@ export class SolicitudesService {
     return from(this.firestore.collection('solicitudes').add(solicutd));
   }
 
+  getSolicitudes(): Observable<any> {
+    return this.firestore
+      .collection('solicitudes')
+      .valueChanges({ idField: 'id' });
+  }
+  
+
   /*
   Esta función recupera el historial de solicitudes por el id_usr del usuario y el estado
   El estado se debe definir como vas a manejarlo por ejemplo 1 = solitud activa, 2 = aceptada, 3 = entregado, -1 = rechazado
@@ -28,4 +35,13 @@ export class SolicitudesService {
       )
       .valueChanges({ idField: 'id' });
   }
+
+  actualizarSolicitud(solicitud: Solicitud): Observable<any> {
+    const solicitudId = solicitud.id; // Reemplaza con la forma correcta de obtener el ID de la solicitud
+    // Actualiza la solicitud en la base de datos
+    return from(this.firestore.collection('solicitudes').doc(solicitudId).update(solicitud));
+  }
+
+  
+  
 }

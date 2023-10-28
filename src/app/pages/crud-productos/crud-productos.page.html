@@ -1,0 +1,55 @@
+  <ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-buttons slot="start">
+        <ion-button size="small">
+          <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Productos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <app-loader *ngIf="isLoading"></app-loader>
+    <ion-grid *ngIf="!isLoading">
+      <app-ver-producto
+        [producto]="mProducto" 
+        [isModalOpen]="isVerProductoOpen"
+        (closeModal)="closeModal($event)">
+      </app-ver-producto>
+      <app-editar-producto
+        [producto]="mProducto" 
+        [isEditarProductoOpen]="isEditarProductoOpen"
+        (closeModal)="closeModal($event)">
+      </app-editar-producto>
+    
+
+      <ion-card *ngFor="let p of productos;">
+        <ion-card-header>
+            <ion-card-title>{{ p.nom_prod }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <p>Estado: {{ getValorEstado(p.estado) }}
+          </ion-item>
+          <ion-item>
+            <ion-button color="secondary" (click)="editarProducto(p)">
+              <ion-icon  name="pencil"></ion-icon>
+            </ion-button>
+            <ion-button color="primary" (click)="verProducto(p)">
+              <ion-icon  id="top-center" name="search"></ion-icon>
+            </ion-button>
+            <ion-button color="danger" (click)="eliminarProducto(p)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+    <ion-fab color="tertiary" slot="fixed" vertical="bottom" horizontal="end" routerLink="/crear-productos">
+      <ion-fab-button>
+        <ion-icon name="create"></ion-icon>
+      </ion-fab-button>
+      
+    </ion-fab>
+  </ion-content>

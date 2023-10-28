@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-button size="small">
+        <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>CATEGORIAS</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card class="ion-padding">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center ion-text-uppercase">Nueva Categoría</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label  position="stacked">Nombre de la Categoria</ion-label>
+          <ion-input  [(ngModel)]="categoria.nombre_ctg" name="nombre" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Descripción</ion-label>
+          <ion-textarea [(ngModel)]="categoria.descrip_ctg" name="descripcion" rows="4"></ion-textarea>
+        </ion-item>
+<!--           
+        <ion-item>
+          <ion-label  position="stacked" rows>Estado</ion-label>
+          <ion-select [(ngModel)]="categoria.estado" name="estado" >
+            <ion-select-option [value]="1">Activo</ion-select-option>
+            <ion-select-option [value]="0">Inactivo</ion-select-option>
+          </ion-select>
+        </ion-item> -->
+                        
+      </ion-list>   
+      <ion-button expand="full" color="primary" (click)="crearCategoria()">Guardar Producto</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

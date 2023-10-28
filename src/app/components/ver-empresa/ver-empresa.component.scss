@@ -1,0 +1,35 @@
+/* empresa-modal.scss */
+
+ion-modal {
+    --background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente para resaltar el modal */
+  }
+  
+  ion-card {
+    --border-radius: 15px; /* Ajusta el radio del borde para que sea más redondeado */
+    --background: #f9f9f9; /* Cambia el color de fondo del ion-card */
+    --ion-border-color: #ddd; /* Cambia el color del borde */
+  }
+  
+  ion-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Cambia el color del título */
+    margin: 10px 0;
+  }
+  
+  ion-list ion-item {
+    --padding-start: 16px; /* Ajusta el espacio a la izquierda del ion-item */
+    --padding-end: 16px; /* Ajusta el espacio a la derecha del ion-item */
+  }
+  
+  ion-label {
+    font-weight: bold;
+    color: #555; /* Cambia el color del texto de las etiquetas */
+  }
+  
+  ion-label, ion-label ion-text {
+    color: #333; /* Cambia el color del texto en las etiquetas */
+  }
+  
+  /* Añade estilos adicionales según tu preferencia */
+  

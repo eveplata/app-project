@@ -6,12 +6,19 @@ export interface Solicitud {
   estado: number;
   comentario: string | null;
   fecha_solicitud: FechaSolicitud | Date | any;
+  fecha_entrega?: FechaEntrega | Date | any;
   id?: string;
   id_emp: string;
   id_usr: string;
+  
 }
 
 export interface FechaSolicitud {
+  seconds: number;
+  nanoseconds: number;
+}
+
+export interface FechaEntrega {
   seconds: number;
   nanoseconds: number;
 }
@@ -27,6 +34,10 @@ export interface ProductoSlt {
   prec_prod: number;
   cantidad?: number | null;
   total?: number | null;
+  cont_prod: number;
+  uni_med_prod: string;
+  marca: string;
+  imagen: string;
 }
 
 export interface UsuarioSlt {

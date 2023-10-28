@@ -47,4 +47,18 @@ export class StorageService {
     );
     //return of(data);
   }
+
+  uploadImage (){
+    return new Promise (resolve=>{
+
+      setTimeout(()=>{
+        resolve(true);
+
+        console.log('responde la promesa ');
+        return;
+
+      }, 2000)
+
+  });
+}
 }

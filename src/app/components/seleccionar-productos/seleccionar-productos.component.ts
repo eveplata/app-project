@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Producto } from 'src/app/interfaces/productos.interface';
 import { ProductosService } from 'src/app/services/productos.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-seleccionar-productos',
@@ -15,18 +16,43 @@ export class SeleccionarProductosComponent implements OnInit {
 
   productos: Producto[] = [];
 
-  constructor(private productosService: ProductosService) {}
+  constructor(
+    private productosService: ProductosService,
+    private navCtrl: NavController,) {}
 
   ngOnInit() {
     this.obtenerProductos();
   }
 
+  // obtenerProductos() {
+  //   this.productosService.obtenerProductos().subscribe((resp) => {
+  //     this.productos = resp.filter((producto: Producto) => producto.estado === 1);
+  //     console.log('productos', this.productos);
+  //   });
+  // }
+
   obtenerProductos() {
     this.productosService.obtenerProductos().subscribe((resp) => {
-      this.productos = resp; //as unknown as Producto[]
-      console.log('productos', this.productos);
+      // Filtrar productos con estado 1
+      this.productos = resp.filter((producto: Producto) => producto.estado === 1);
+  
+      // Ordenar los productos por nombre
+      this.productos.sort((a, b) => {
+        const nombreA = a.nom_prod.toLowerCase();
+        const nombreB = b.nom_prod.toLowerCase();
+        return nombreA.localeCompare(nombreB);
+      });
+  
+      console.log('Productos ordenados y filtrados:', this.productos);
     });
   }
+  
+
+  backToPage() {
+    this.navCtrl.navigateBack('home');
+  }
+
+
 
   cancel() {
     this.isModalOpen = false;

@@ -1,0 +1,48 @@
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button size="small" (click)="backToPage()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Detalle Categoria</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding centered-content">
+      <ion-list>
+        <!-- <ion-label>{{ categoria | json }}</ion-label> -->
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">{{ categoria.nombre_ctg }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <!-- <div> -->
+                <ion-label >
+                <strong>Nombre:</strong> 
+              </ion-label>
+              <ion-label style="white-space: normal;">{{ categoria.nombre_ctg }}</ion-label>
+              <!-- </div> -->
+            </ion-item>
+            <ion-item>
+              <!-- <div> -->
+                <ion-label >
+                  <strong>Descripción:</strong>
+                </ion-label>
+                <ion-label style="white-space: normal;">{{ categoria.descrip_ctg }}</ion-label>
+              <!-- </div> -->
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <strong>Estado:</strong>  
+              </ion-label>
+              <ion-label> {{ getValorEstado(categoria.estado) }}</ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

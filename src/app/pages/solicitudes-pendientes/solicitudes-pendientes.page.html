@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-button size="small">
+        <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Todas las Solicitudes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <ion-grid *ngIf="!isLoading">
+    <ion-list>
+      <app-especificar-solicitudes
+      [isModalOpen]="isModalOpen"
+        [solicitud]="mSolicitud"
+        (closeModal)="closeModal($event)" ></app-especificar-solicitudes>
+        <ion-item *ngFor="let s of solicitudes" (click)="openModal(s)">
+          <ion-icon slot="start" name="receipt-outline" color="primary"></ion-icon>
+        <ion-label>
+          <h2>{{ s.fecha_solicitud['seconds'] * 1000 | date:'dd/MM/yyyy h:mm:ss a' }}</h2>
+          <h3>Empresa: {{ s.empresa.nom_emp }}</h3>
+          <p>Usuario: {{s.usuario.nom_usr}}</p>
+          <p>Estado: {{ getValorEstado(s.estado) }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+</ion-content>

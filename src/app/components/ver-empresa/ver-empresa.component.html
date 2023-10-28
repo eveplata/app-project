@@ -1,0 +1,92 @@
+<ion-modal [isOpen]="isModalOpen" >
+  <ng-template>
+  <ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-buttons slot="start">
+        <ion-button size="small">
+          <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Información de la Empresa</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">{{ empresa.nom_emp }}</ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-label>Nombre:</ion-label>
+            <ion-label style="white-space: normal;">{{ empresa.nom_emp }}</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <div>
+              <ion-label>Dirección:</ion-label>
+            <ion-label style="white-space: normal;">{{ empresa.dir_emp }}</ion-label>
+            </div>
+          </ion-item>
+  
+          <!-- <ion-item>
+            <ion-label>Fecha de Inicio:</ion-label>
+            <ion-label>{{empresa.fec_inicio? (empresa.fec_inicio['seconds'] * 1000 | date:'dd/MM/yyyy') : 'Sin Registro '}}</ion-label>
+          </ion-item>        -->
+          
+          <ion-item>
+            <ion-label>Fecha de Inicio:</ion-label>
+            <ion-label>
+              {{ empresa.fec_inicio ? (empresa.fec_inicio.toDate() | date:'dd/MM/yyyy') : 'Sin Registro' }}
+            </ion-label>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label>Fecha de fin:</ion-label>
+            <ion-label>{{ empresa.fec_fin ? (empresa.fec_fin['seconds'] * 1000 | date:'dd/MM/yyyy') : 'Sin registro' }}</ion-label>
+          </ion-item>
+          
+  
+          <ion-item>
+            <ion-label>Tipo:</ion-label>
+            <ion-label style="white-space: normal;">{{ empresa.tipo_emp }}</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>Estado:</ion-label>
+            <ion-label>{{ getValorEstado(empresa.estado) }}</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>Telefono:</ion-label>
+            <ion-label>
+              {{ empresa.telefono ? empresa.telefono : 'Sin registro' }}
+            </ion-label>
+          </ion-item>
+          
+  
+          <ion-item>
+            <ion-label>Celular:</ion-label>
+            <ion-label>
+              {{ empresa.celu_emp ? empresa.celu_emp : 'Sin registro' }}
+            </ion-label>
+          </ion-item>
+          
+  
+          <ion-item>
+            <ion-label>Email:</ion-label>
+            <ion-label style="white-space: normal;">{{ empresa.email_emp ? empresa.email_emp : 'Sin registro' }}</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label>Departamento:</ion-label>
+            <ion-label>{{ empresa.dep_emp }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</ng-template>  
+</ion-modal>

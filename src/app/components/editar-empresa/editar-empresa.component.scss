@@ -1,0 +1,12 @@
+/* Estilos para los botones */
+.custom-button {
+    width: 100%;
+    margin-top: 10px; /* Espacio entre botones */
+    background-color: #ff00a6; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+  }
+  
+  .custom-button.cancel {
+    background-color: #9805a2; /* Color de fondo del botón de cancelar */
+  }
+  

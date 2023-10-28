@@ -1,0 +1,51 @@
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary"> <!-- Cambia el color de la barra de herramientas -->
+        <ion-buttons slot="start">
+          <ion-button size="small" (click)="backToPage()">
+            <ion-icon slot="icon-only" name="close"></ion-icon> 
+          </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Detalle Producto</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding centered-content">
+      <ion-list>
+        <ion-card>
+          <img alt="Imagen del producto" [src]="producto.imagen" /> 
+          <ion-card-content>
+            <ion-item lines="none">
+              <div>
+                <ion-label class="info-label">
+                  Nombre: {{ producto.nom_prod }}
+                </ion-label>
+                <ion-label class="info-label">
+                  Marca: {{ producto.marca }}
+                </ion-label>
+                <ion-label class="info-label">
+                  Tipo: {{ producto.tipo_prod }}
+                </ion-label>
+                <ion-label class="info-label">
+                  Contenido: {{ producto.cont_prod }} {{ producto.uni_med_prod }}
+                </ion-label>
+                <ion-label class="info-label" style="white-space: normal;">
+                  Categoría: {{ producto.categorias.nombre }}
+                </ion-label>
+                <ion-label class="info-label">
+                  Precio: Bs {{ producto.prec_prod | number: '1.2-2' }} 
+                </ion-label>
+                <ion-label class="info-label">
+                  Stock: {{ producto.stock_act }}
+                </ion-label>
+                <ion-label class="info-label">
+                  Estado: {{ getValorEstado(producto.estado) }}
+                </ion-label>
+              </div>            
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -27,8 +27,8 @@
             </ion-select>
           </ion-item>
 
-        <ion-button expand="block" (click)="openModal()">Seleccionar Productos</ion-button>
-        <ion-button expand="block" (click)="solicitar()">solicitar</ion-button>
+          <ion-button expand="block" (click)="openModal()" [disabled]="!empresaSeleccionada">Seleccionar Productos</ion-button>
+          <ion-button expand="block" (click)="solicitar()">solicitar</ion-button>
 
         <app-seleccionar-productos 
           [productosSeleccionados]="productosSeleccionados"
@@ -49,6 +49,7 @@
             <ion-card-content>
               <ion-item>
                 <ion-label>Tipo: {{ p.tipo_prod }}</ion-label>
+                
               </ion-item>
             </ion-card-content>
           </ion-card>

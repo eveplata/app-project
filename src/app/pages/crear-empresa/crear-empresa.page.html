@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-button size="small">
+        <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Empresa</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="crearEmpresa()" #empresaForm="ngForm"> 
+
+        <!-- <ion-item>
+          <ion-label position="stacked" style="white-space: normal;">Nombre:</ion-label>
+          <ion-input type="text" name="nombre" required [(ngModel)]="empresa.nom_emp" #nombre="ngModel"></ion-input>
+        </ion-item>
+         -->
+         <ion-item>
+          <ion-label position="stacked">Nombre:</ion-label>
+          <ion-input type="text" name="nombre" required [(ngModel)]="empresa.nom_emp" #nombre="ngModel"></ion-input>
+        </ion-item>
+
+    
+        <ion-item >
+          <ion-label position="stacked" style="white-space: normal;">Dirección:</ion-label>
+          <ion-input type="text" name="dir_emp" required [(ngModel)]="empresa.dir_emp"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label position="stacked">Tipo:</ion-label>
+          <ion-input type="text" name="tipo_emp" [(ngModel)]="empresa.tipo_emp" ></ion-input>
+        </ion-item>        
+    
+        <!-- <ion-item >
+          <ion-label position="stacked">Estado:</ion-label>
+          <ion-select name="estado">
+            <ion-select-option value="1">Activa</ion-select-option>
+            <ion-select-option value="0">Inactiva</ion-select-option>
+          </ion-select>
+        </ion-item> -->
+         
+        <ion-item >
+          <ion-label position="stacked">Teléfono:</ion-label>
+          <ion-input type="tel" name="telefono" [(ngModel)]="empresa.telefono"></ion-input>
+        </ion-item>
+    
+        <ion-item >
+          <ion-label position="stacked">Celular:</ion-label>
+          <ion-input type="tel" name="celu_emp" [(ngModel)]="empresa.celu_emp"></ion-input>
+        </ion-item>
+    
+        <ion-item >
+          <ion-label position="stacked">Email:</ion-label>
+          <ion-input type="email" name="email_emp" [(ngModel)]="empresa.email_emp"required></ion-input>
+        </ion-item>
+    
+        <ion-item >
+          <ion-label position="stacked" style="white-space: normal;">Departamento:</ion-label>
+          <ion-input type="text" name="dep_emp" required [(ngModel)]="empresa.dep_emp"></ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label position="stacked">Fecha de Inicio:</ion-label>
+          <ion-input type="date" name="fec_inicio" required [(ngModel)]="empresa.fec_inicio"></ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label position="stacked">Fecha de Fin:</ion-label>
+          <ion-input type="date" name="fec_fin" [(ngModel)]="empresa.fec_fin"></ion-input>
+        </ion-item>
+          <ion-button expand="full" type="submit" [disabled]="empresaForm.invalid">Guardar</ion-button>
+      </form>
+    </ion-card-content>
+    </ion-card>	
+    
+</ion-content>

@@ -1,0 +1,35 @@
+/* styles.scss */
+
+/* Estilo para la barra de herramientas del encabezado */
+ion-toolbar {
+    background-color: #3498db; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    font-weight: bold; /* Estilo de fuente */
+  }
+  
+  /* Estilo para los elementos de la lista */
+  ion-item {
+    background-color: #ecf0f1; /* Color de fondo de los elementos de la lista */
+    border: 1px solid #bdc3c7; /* Borde */
+    margin: 5px; /* Margen entre elementos de la lista */
+  }
+  
+  /* Estilo para el botón de retroceso en la barra de herramientas */
+  ion-back-button {
+    color: #fff; /* Color del botón de retroceso */
+  }
+  
+  /* Estilo para los iconos */
+  ion-icon {
+    font-size: 24px; /* Tamaño del icono */
+  }
+  
+  /* Estilo para las etiquetas de título y subtítulo */
+  h2 {
+    font-size: 20px; /* Tamaño de fuente del título */
+  }
+  
+  h3 {
+    font-size: 16px; /* Tamaño de fuente del subtítulo */
+  }
+  

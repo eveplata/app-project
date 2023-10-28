@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-button size="small">
+        <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Categorías</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-loader *ngIf="isLoading"></app-loader>
+  <ion-grid *ngIf="!isLoading">
+
+    <app-ver-categoria
+        [categoria]="mCategoria"
+        [isModalOpen]="isVerCategoriaOpen"
+        (closeModal)="closeModal($event)">
+      </app-ver-categoria>
+      <app-editar-categoria
+      [categoria]="mCategoria"
+      [isEditarCategoriaOpen]="isEditarCategoriaOpen"
+      (closeModal)="closeModal($event)">
+    </app-editar-categoria>
+
+    <ion-card *ngFor="let c of categoria;">
+      <ion-card-header>
+          <ion-card-title>{{ c.nombre_ctg }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <p>Estado: {{ getValorEstado(c.estado) }}
+        </ion-item>
+        <ion-item>
+          <ion-button color="secondary" (click)="editarCategoria(c)">
+            <ion-icon name="pencil"></ion-icon>
+          </ion-button>          
+          <ion-button color="primary" (click)="verCategoria(c)" >
+            <ion-icon  id="top-center"  name="search"></ion-icon>
+          </ion-button>
+          <ion-button color="danger" (click)="eliminarCategoria(c)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
+  <ion-fab color="tertiary" slot="fixed" vertical="bottom" horizontal="end" routerLink="/crear-categorias">
+    <ion-fab-button>
+      <ion-icon name="create"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

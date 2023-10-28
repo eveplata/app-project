@@ -54,4 +54,9 @@ export class UsuariosService {
     //this.firestore.collection('usuarios').doc(id).valueChanges(); // recuperar por ide o toda la coleccion sin enviar el id
     /* Ejemplo */
   }
+
+  crearUsuario() {
+    
+  }
+
 }

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-button size="small">
+        <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Lista Empresas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <ion-grid *ngIf="!isLoading">
+      <app-ver-empresa
+        [isModalOpen]="isVerEmpresaOpen"
+        [empresa]="mEmpresa"
+        (closeModal)="closeModal($event)">
+      </app-ver-empresa>
+      <app-editar-empresa
+        [isEditarEmpresaOpen]="isEditarEmpresaOpen"
+        [empresa]="mEmpresa"
+        (closeModal)="closeModal($event)">
+      </app-editar-empresa>
+      <ion-card *ngFor="let e of empresas;">
+        <ion-item>
+          <ion-icon slot="start" name="receipt-outline" color="primary"></ion-icon>
+          <ion-label>
+            <div>
+              <h3 style="white-space: normal;">Empresa: {{e.nom_emp}}</h3>
+              <h4>Departamento: {{e.dep_emp}}</h4>
+              <p>Estado: {{ getValorEstado(e.estado) }}</p>
+
+              <ion-buttons slot="end">
+                <ion-button color="secondary" (click)="editarEmpresa(e)">
+                  <ion-icon slot="start" name="pencil"></ion-icon>
+                </ion-button>
+                <ion-button color="primary" (click)="verEmpresa(e)">
+                  <ion-icon  id="top-center"  name="search"></ion-icon>
+                </ion-button>
+                <ion-button color="danger" (click)="eliminarEmpresa(e)">
+                  <ion-icon name="trash"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-card>
+  </ion-grid>
+  <ion-fab  slot="fixed" vertical="bottom" horizontal="end" routerLink="/crear-empresa">
+    <ion-fab-button color="tertiary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
