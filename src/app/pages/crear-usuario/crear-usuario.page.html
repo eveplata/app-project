@@ -56,22 +56,22 @@
 
         <ion-item>
           <ion-label position="stacked">Roles</ion-label>
-          <ion-select required name="roles" [(ngModel)]="rolesSeleccionados" multiple="true">
-            <ion-select-option *ngFor="let r of roles" [value]="r.id_rol">
+          <ion-select required name="roles" [(ngModel)]="usuario.roles" multiple="true">
+            <ion-select-option *ngFor="let r of roles" [value]="{id_rol: r.id, nom_rol:r.nom_rol}">
               {{ r.nom_rol }}
             </ion-select-option>
           </ion-select>
         </ion-item>
         
-<!-- 
-        <ion-item>
+
+      <ion-item>
           <ion-label position="stacked">Empresas</ion-label>
-          <ion-select name="empresa" multiple="true">
-            <ion-select-option *ngFor="let e of empresas">
+          <ion-select name="empresa" [(ngModel)]="empresasSeleccionados" multiple="true">
+            <ion-select-option *ngFor="let e of empresas" [value]="{id_emp: e.id, nom_emp: e.nom_emp}">
               {{ e.nom_emp }}
             </ion-select-option>
           </ion-select>
-        </ion-item> -->
+        </ion-item>
 
       </ion-list>
 

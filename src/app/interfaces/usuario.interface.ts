@@ -8,9 +8,9 @@ export interface Usuario {
   nom_usr: string;
   dep_usr: string;
   correo_usr: string;
-  id: string;
+  id?: string;
   estado: number;
-  roles: Roles[];
+  roles: RolesUsr[];
 }
 
 export interface FecUsr {
@@ -18,7 +18,7 @@ export interface FecUsr {
   nanoseconds: number;
 }
 
-export interface Roles {
+export interface RolesUsr {
   id_rol:  string;
   nom_rol: string;
 }
