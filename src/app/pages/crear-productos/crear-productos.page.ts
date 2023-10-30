@@ -23,6 +23,7 @@ export class CrearProductosPage implements OnInit {
     stock_min: 0,
     cant_comp_prod: 0,
     categorias: {
+      id_categoria:'',
       nombre: '', 
     },
     uni_med_prod: '',
@@ -48,34 +49,40 @@ export class CrearProductosPage implements OnInit {
 
     this.categoriasService.obtenerCategorias().subscribe((categorias) => {
       this.categorias = categorias.filter((categorias) => categorias.estado === 1);
-    
-      if (this.categorias.length > 0) {
-        this.producto.categorias.nombre = this.categorias[0].nombre_ctg;
-      }
+  
     });
   }
   crearProducto() {
     if (this.agregarProducto) {
       return; // Evitar múltiples clics
     }
-
+  
     this.agregarProducto = true;
-
-    // Llama a la función para agregar el producto
+  
+    if (this.categorias.length > 0) {
+      this.producto.categorias = {
+        id_categoria: this.categorias[0].id,
+        nombre: this.categorias[0].nombre_ctg
+      };
+    }
+  
+    // función para agregar el producto
     this.productosService.crearProducto(this.producto).subscribe(
       (docRef) => {
         console.log('Producto agregado con ID:', docRef.id);
-
-        this.agregarProducto = false; 
-
+  
+        this.agregarProducto = false;
+  
         this.navCtrl.navigateForward('/crud-productos');
       },
       (error) => {
         console.error('Error al agregar el producto:', error);
-        this.agregarProducto = false; 
+        this.agregarProducto = false;
       }
     );
   }
+  
+  
 
   async newImage(event: any) {
     if (event && event.target && event.target.files && event.target.files[0]) {

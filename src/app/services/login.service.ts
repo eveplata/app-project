@@ -51,4 +51,10 @@ export class LoginService {
   logout() {
     return this.fireAuth.signOut();
   }
+
+  registerWithEmail(email: string, password: string) {
+    return this.fireAuth.createUserWithEmailAndPassword(email, password);
+  }
+
+
 }

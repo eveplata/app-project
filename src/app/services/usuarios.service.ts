@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { Usuario } from '../interfaces/usuario.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsuariosService {
   constructor(private firestore: AngularFirestore) {}
+
+  getUsuario(): Observable<any[]>{
+
+    return this.firestore
+    .collection('usuarios')
+    .valueChanges({idField: 'id'});
+
+  }
 
   getUsuarioEmpresas(id_usr: string): Observable<any> {
     return this.firestore
@@ -55,8 +64,10 @@ export class UsuariosService {
     /* Ejemplo */
   }
 
-  crearUsuario() {
-    
-  }
+  crearUsuario(usuario: Usuario): Observable<any> {
+    return from(this.firestore
+      .collection('usuarios')
+      .add(usuario));
+ }
 
 }

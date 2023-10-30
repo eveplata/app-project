@@ -1,15 +1,16 @@
 export interface Usuario {
-  seg_ap: string;
+  seg_ap?: string;
   dir_usr: string;
   cel_usr: number;
   primer_ap: string;
-  fec_nac: FecUsr | Date | any;
-  fec_reg_ing: FecUsr | Date | any;
+  fec_nac?: FecUsr | Date | any;
+  fec_reg_ing?: FecUsr | Date | any;
   nom_usr: string;
   dep_usr: string;
   correo_usr: string;
   id: string;
-  roles: Role[];
+  estado: number;
+  roles: Roles[];
 }
 
 export interface FecUsr {
@@ -17,7 +18,8 @@ export interface FecUsr {
   nanoseconds: number;
 }
 
-export interface Role {
+export interface Roles {
   id_rol:  string;
   nom_rol: string;
 }
+

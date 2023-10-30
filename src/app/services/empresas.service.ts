@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, from } from 'rxjs';
 import { Empresa } from '../interfaces/empresas.interface';
+import { EmpresaUsuarioService } from './empresa-usuario.service';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,13 @@ export class EmpresasService {
       .collection('empresas')
       .add(empresa));
  }
-  
+
+
+crearEmpUsr(empresaUsr: EmpresaUsuarioService): Observable<any> {
+  return from(this.firestore
+    .collection('usuario_empresa')
+    .add(empresaUsr));
+}
 
 }
+  

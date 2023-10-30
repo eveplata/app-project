@@ -88,12 +88,12 @@ const routes: Routes = [
     import('./pages/crear-categorias/crear-categorias.module')
     .then( m => m.CrearCategoriasPageModule)
   },
-  {
-    path: 'gestionar-solicitudes',
-    loadChildren: () => 
-    import('./pages/gestionar-solicitudes/gestionar-solicitudes.module')
-    .then( m => m.GestionarSolicitudesPageModule)
-  },
+  // {
+  //   path: 'gestionar-solicitudes',
+  //   loadChildren: () => 
+  //   import('./pages/gestionar-solicitudes/gestionar-solicitudes.module')
+  //   .then( m => m.GestionarSolicitudesPageModule)
+  // },
   {
     path: 'gestionar-historial',
     loadChildren: () => 
@@ -123,10 +123,15 @@ const routes: Routes = [
     loadChildren: () =>
     import('./pages/crear-empresa/crear-empresa.module')
     .then( m => m.CrearEmpresaPageModule)
-  },  {
+  },
+  {
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+  },  {
+    path: 'crear-usuario',
+    loadChildren: () => import('./pages/crear-usuario/crear-usuario.module').then( m => m.CrearUsuarioPageModule)
   },
+
 
 
 

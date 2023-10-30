@@ -58,6 +58,17 @@
           <ion-label position="stacked">Stock</ion-label>
           <ion-input [(ngModel)]="producto.stock_act" name="stock" type="number" required></ion-input>
         </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Stock minimo</ion-label>
+          <ion-input [(ngModel)]="producto.stock_min" name="stockmin" type="number" required></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="stacked">Cantidad comprada</ion-label>
+          <ion-input [(ngModel)]="producto.cant_comp_prod" name="cant_comp_prod" type="number" required></ion-input>
+        </ion-item>
+
         <ion-item>
           <ion-label  class="normal">Imagen</ion-label>
             <ion-buttons slot="end">
