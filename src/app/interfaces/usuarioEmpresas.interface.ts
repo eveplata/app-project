@@ -1,7 +1,7 @@
 export interface UsuarioEmpresas {
   id_usr: string;
   empresas: EmpresaUsrEp[];
-  id: string;
+  id?: string;
 }
 
 export interface EmpresaUsrEp {

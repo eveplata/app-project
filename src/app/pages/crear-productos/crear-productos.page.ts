@@ -6,6 +6,7 @@ import { CategoriasService } from 'src/app/services/categorias.service';
 import { Categoria } from 'src/app/interfaces/categorias.interface';
 import { Storage } from '@ionic/storage-angular';
 import { StorageService } from '../../services/storage.service';
+import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class CrearProductosPage implements OnInit {
     private navCtrl: NavController,
     private productosService: ProductosService,
     private categoriasService: CategoriasService,
-    private storageservice: StorageService,     
+    private storageservice: StorageService,
+    private firebaseStorageService: FirebaseStorageService     
 
   ) { }
 
@@ -82,10 +84,24 @@ export class CrearProductosPage implements OnInit {
     );
   }
   
-  
+
+  file: any;
+  nomArchivo: string = '';
 
   async newImage(event: any) {
-    if (event && event.target && event.target.files && event.target.files[0]) {
+
+    console.log('Imagen', event.target.files);
+    console.log('Imagen', event.target.files[0].name);
+    this.file = event.target.files[0];
+    this.nomArchivo = event.target.files[0].name;
+
+    /**fffffffff */
+    //this.firebaseStorageService.subirArchivo(this.file, this.nomArchivo, 'productos')
+    /**fffffffff */
+  
+    
+
+    /*if (event && event.target && event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = ((image) => {
         if (image.target) {
@@ -96,7 +112,7 @@ export class CrearProductosPage implements OnInit {
       });
   
       reader.readAsDataURL(event.target.files[0]);
-    }
+    }*/
   }
   
   
