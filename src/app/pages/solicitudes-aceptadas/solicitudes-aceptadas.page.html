@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-button size="small">
+        <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Solicitudes Aceptadas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <ion-grid *ngIf="!isLoading">
+    <ion-list>
+      <app-solicitudes-aceptadas-admin
+        [isModalOpen]="isModalOpen"
+        [solicitud]="mSolicitud"
+        (closeModal)="closeModal($event)" ></app-solicitudes-aceptadas-admin> 
+      <ion-item *ngFor="let hA of hActivo;" (click)="openModal(hA)">
+        <ion-icon slot="start" name="receipt-outline" color="primary"></ion-icon>
+        <ion-label>
+          <h2>{{ hA.fecha_solicitud['seconds'] * 1000 | date:'dd/MM/yyyy h:mm:ss a' }}</h2>
+          <h3>{{hA.empresa.nom_emp}}</h3>
+          <h3>Nombre: {{hA.usuario.nom_usr + ' ' +  hA.usuario.primer_ap!  + ' ' + hA.usuario.seg_ap}}</h3>
+          <!-- <p>Estado: {{hA.estado}}</p> -->
+          <p>Estado: {{ getValorEstado(hA.estado) }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+</ion-content>

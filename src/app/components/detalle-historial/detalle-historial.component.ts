@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Solicitud} from 'src/app/interfaces/solicitud.interface';
+import { Solicitud } from 'src/app/interfaces/solicitud.interface';
 import { SolicitudesService } from 'src/app/services/solicitudes.service';
 import { NavController } from '@ionic/angular';
 
@@ -9,7 +9,7 @@ import { NavController } from '@ionic/angular';
   templateUrl: './detalle-historial.component.html',
   styleUrls: ['./detalle-historial.component.scss'],
 })
-export class DetalleHistorialComponent  implements OnInit {
+export class DetalleHistorialComponent implements OnInit {
 
   @Input() isModalOpen!: boolean;
   @Input() solicitud!: Solicitud;
@@ -31,7 +31,7 @@ export class DetalleHistorialComponent  implements OnInit {
     const year = currentDate.getFullYear();
     return `${day}/${month}/${year} `;
   }
- 
+
 
   cancel() {
     this.isModalOpen = false;
@@ -48,5 +48,5 @@ export class DetalleHistorialComponent  implements OnInit {
     this.isModalOpen = false;
     this.closeModal.emit(this.isModalOpen);
   }
-  }
+}
 

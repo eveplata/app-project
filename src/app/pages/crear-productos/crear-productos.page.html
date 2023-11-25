@@ -16,9 +16,9 @@
     <ion-card-content>
       <ion-list>
         <ion-item>
-          <ion-label position="stacked" >Nombre del Producto</ion-label>
+          <ion-label position="stacked">Nombre del Producto</ion-label>
           <ion-input [(ngModel)]="producto.nom_prod" name="nombre" type="text" required></ion-input>
-        </ion-item>  
+        </ion-item>
 
         <ion-item>
           <ion-label position="stacked">Categoría</ion-label>
@@ -48,7 +48,7 @@
           <ion-label position="stacked">Precio</ion-label>
           <ion-input [(ngModel)]="producto.prec_prod" name="precio" type="number" required></ion-input>
         </ion-item>
-        
+
         <ion-item>
           <ion-label position="stacked">Tipo</ion-label>
           <ion-input [(ngModel)]="producto.tipo_prod" name="tipo" type="text" required></ion-input>
@@ -63,13 +63,13 @@
           <ion-label position="stacked">Stock minimo</ion-label>
           <ion-input [(ngModel)]="producto.stock_min" name="stockmin" type="number" required></ion-input>
         </ion-item>
-        
+
         <ion-item>
           <ion-label position="stacked">Cantidad comprada</ion-label>
           <ion-input [(ngModel)]="producto.cant_comp_prod" name="cant_comp_prod" type="number" required></ion-input>
         </ion-item>
 
-        <ion-item>
+        <!-- <ion-item>
           <ion-label  class="normal">Imagen</ion-label>
             <ion-buttons slot="end">
               <ion-button>
@@ -81,10 +81,10 @@
             </ion-buttons>
          </ion-item>
 
-         <img [src]="nuevaImagen">
-          
-                   
-<!--         
+         <img [src]="nuevaImagen"> -->
+
+
+        <!--         
         <ion-item>
           <ion-label position="stacked">Estado del Producto</ion-label>
           <ion-select [(ngModel)]="producto.estado" name="estado">
@@ -93,7 +93,10 @@
           </ion-select>
         </ion-item>         -->
       </ion-list>
-      <ion-button expand="full" color="primary" (click)="crearProducto()">Guardar Producto</ion-button>
+      <ion-button expand="full" shape="round" color="tertiary" (click)="crearProducto()">
+        Guardar Producto
+      </ion-button>
+      <!-- <ion-button expand="full" color="primary" (click)="crearProducto()">Guardar Producto</ion-button> -->
     </ion-card-content>
   </ion-card>
 </ion-content>

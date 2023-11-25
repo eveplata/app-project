@@ -57,7 +57,7 @@ export class HistorialSolicitudPage implements OnInit {
     //[-1, 2, 3] = son los estados que yo le puse en el servicio esta mejor explicado 1 = solitud activa, 2 = aceptada, 3 = entregado, -1 = rechazado
     //en este caso como es historial estoy obteniendo los 2 = aceptada, 3 = entregado, -1 = rechazado que serian su historial
     this.solicitudesService
-      .getSolicitudesPorUsuario(this.id_usr, [-1, 3])
+      .getSolicitudesPorUsuario(this.id_usr, [-1, 0 , 3])
       .subscribe((resp) => {
         console.log('historial', resp); //esto es un salida que se muestra en el navegador cuando recupera los datos
         this.historial = resp; //asignamos la respuesta a la variable historial para mostrarlo en el html
@@ -73,6 +73,7 @@ export class HistorialSolicitudPage implements OnInit {
     //1 = solitud activa, 2 = aceptada, 3 = entregado, -1 = rechazado
     const nombresEstados = [
       { id: -1, valor: 'Rechazado' },
+      { id: 0, valor: 'En revision' },      
       { id: 1, valor: 'Solicitud Activa' },
       { id: 2, valor: 'Aceptada' },
       { id: 3, valor: 'Entregado' },

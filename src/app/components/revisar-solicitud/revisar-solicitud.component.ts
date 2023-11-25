@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Solicitud} from 'src/app/interfaces/solicitud.interface';
+import { ProductoSlt, Solicitud} from 'src/app/interfaces/solicitud.interface';
 import { SolicitudesService } from 'src/app/services/solicitudes.service';
 import { NavController } from '@ionic/angular';
 
@@ -13,6 +13,8 @@ export class RevisarSolicitudComponent  implements OnInit {
   @Input() isModalOpen!: boolean;
   @Input() solicitud!: Solicitud;
   @Output() closeModal: EventEmitter<boolean> = new EventEmitter();
+  @Output() productosSeleccionados: EventEmitter<ProductoSlt[]> = new EventEmitter();
+
   fecha_entrega: string; 
   
 
@@ -51,7 +53,22 @@ export class RevisarSolicitudComponent  implements OnInit {
   }
   
   
-  guardarSolicitud(){
+  // guardarSolicitud(){
+  //   this.solicitud.estado = 1;
+  //   this.solicitud.fecha_entrega = this.getCurrentDate(); 
+
+  //   this.solicitudesService.actualizarSolicitud(this.solicitud).subscribe((resp) => {
+  //     console.log('Solicitud Activa');
+  //     this.isModalOpen = false;
+  //     this.closeModal.emit(this.isModalOpen);
+  //   });
+
+  // }
+
+  backToPage() {
+    this.navCtrl.navigateBack('solicitudes-activas');
+    this.isModalOpen = false;
+    this.closeModal.emit(this.isModalOpen);
     this.solicitud.estado = 1;
     this.solicitud.fecha_entrega = this.getCurrentDate(); 
 
@@ -60,22 +77,39 @@ export class RevisarSolicitudComponent  implements OnInit {
       this.isModalOpen = false;
       this.closeModal.emit(this.isModalOpen);
     });
+  }
+
+
+  checkboxClick(e: any, producto: ProductoSlt) {
+    console.log(e.currentTarget.checked);
+    console.log('producto', producto);
+    for (let i = 0; i < this.solicitud.productos.length; i++) {
+      if(this.solicitud.productos[i].id_producto === producto.id_producto) {
+        this.solicitud.productos[i].entregado = e.currentTarget.checked;
+      }
+    }
+    console.log('this.solicitud', this.solicitud);
+
+    this.productosSeleccionados.emit(this.solicitud.productos.filter(p => p.entregado));
 
   }
 
-  // getCurrentDate(): string {
-  //   const currentDate = new Date();
-  //   const day = currentDate.getDate().toString().padStart(2, '0');
-  //   const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-  //   const year = currentDate.getFullYear();
-  //   return `${day}/${month}/${year}`;
+  // checkboxClick(e: any, producto: ProductoSlt) {
+  //   const stock = producto.stock_act;
+  //   const cantidad = producto.cantidad;
+  
+  //   if (stock !== undefined && cantidad !== null && stock >= cantidad!) {
+  //     producto.stock_act = stock - cantidad!;
+  //     producto.entregado = e.currentTarget.checked;
+  //   } else {
+  //     console.error('Stock o cantidad no son valores válidos o no hay suficiente stock');
+  //   }
+  
+  //   this.productosSeleccionados.emit(this.solicitud.productos.filter(p => p.entregado));
   // }
-
-  backToPage() {
-    this.navCtrl.navigateBack('solicitudes-activas');
-    this.isModalOpen = false;
-    this.closeModal.emit(this.isModalOpen);
-  }
+  
+  
+  
 
   
 }

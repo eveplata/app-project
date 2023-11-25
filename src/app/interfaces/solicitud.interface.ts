@@ -38,6 +38,8 @@ export interface ProductoSlt {
   uni_med_prod: string;
   marca: string;
   imagen: string;
+  stock_act?: number;
+  entregado: boolean;
 }
 
 export interface UsuarioSlt {

@@ -42,8 +42,9 @@ export class SolicitudesActivasPage implements OnInit {
   }
 
   ListSolicitudPorIdUsuario() {
+    console.log(this.id_usr)
     this.solicitudesService
-      .getSolicitudesPorUsuario(this.id_usr, [0,1,2])
+      .getSolicitudesPorUsuario(this.id_usr, [1])
       .subscribe((resp) => {
         console.log('historial Activo', resp); 
         this.hActivo = resp;

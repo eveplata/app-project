@@ -9,10 +9,10 @@
     <ion-grid *ngIf="uid != null && usuario != null">
 
         <ion-row>
-            <ion-col size="12">
+            <ion-col size="12" >
                 <ion-item lines="none" class="item-header">
                     <div class="center">
-                        <ion-img class="custom-image" src="/../assets/images/EMPRESA.PNG" alt="Logo" class="logo"></ion-img>
+                        <ion-img class="custom-image" src="/../assets/images/logo2.png" ></ion-img>
                     </div>
 
                     <ion-chip slot="end" color="danger" (click)="cerrarSession()" tappable>
@@ -31,7 +31,7 @@
 
         <ion-grid class="cuerpo">
             <ion-row>
-                <ion-col size="12" class="ion-text-center">
+                <ion-col size="12" class="ion-text-center" >
                     <div class="ion-text-center">
                         <!-- <img [src]="user.datos.imagenPerfil" style="width: 30%" /> -->
                         <img src="/../assets/images/user.png" style="width: 30%" />
@@ -55,7 +55,7 @@
                           </ion-text>
                     </ion-card>
                 </ion-col>
-                <ion-col size="6" *ngIf="validarRol(['Administrador', 'Empleado'])">
+                <ion-col size="6" *ngIf="validarRol(['Empleado'])">
                     <ion-card color="light" (click)="navigateToPage('/solicitar-productos')">
                         <ion-icon name="receipt-outline" color="primary"></ion-icon>
                         <ion-text class="ion-text-center">
@@ -64,6 +64,7 @@
                         
                     </ion-card>
                 </ion-col>
+
                 <!-- restringir con la fecha -->
                 <!-- <ion-col size="6" *ngIf="validarRol(['Empleado'])">
                     <ion-card class="custom-button" (click)="mostrarAlertaSolicitarProductos()">
@@ -73,25 +74,45 @@
                       </ion-text>
                     </ion-card>
                   </ion-col>                   -->
-                  
-                <ion-col size="6" *ngIf="validarRol(['Empleado', 'Administrador'])">
+
+                <ion-col size="6" *ngIf="validarRol(['Empleado'])">
                     <ion-card color="light" (click)="navigateToPage('/historial-solicitud')">
                         <!-- <ion-card color="light" routerLink="/historial-solicitud"> -->
-                        <ion-icon name="receipt-outline" color="primary"></ion-icon>
+                        <ion-icon name="albums-outline" color="primary"></ion-icon>
                         
                         <ion-text class="ion-text-center">
                             <p>Historial de Solicitudes</p>
                         </ion-text>
                     </ion-card>
                 </ion-col>
-                <ion-col size="6"*ngIf="validarRol([ 'Empleado','Administrador'])">
-                    <ion-card color="light" (click)="navigateToPage('/solicitudes-activas')">
-                        <ion-icon name="book-outline" color="primary"></ion-icon>
+
+                <ion-col size="6"*ngIf="validarRol([ 'Empleado'])">
+                    <ion-card color="light" (click)="navigateToPage('/solicitudes-aceptadas-usuario')">
+                        <ion-icon name="checkmark-done-circle-outline" color="primary"></ion-icon>
                         <ion-text class="ion-text-center">
-                            <p>Solicitudes Pendientes</p>
+                            <p>Solicitudes Aprobadas </p>
                         </ion-text>
                     </ion-card>
                 </ion-col>
+
+                <ion-col size="6"*ngIf="validarRol([ 'Empleado'])">
+                    <ion-card color="light" (click)="navigateToPage('/solicitudes-activas')">
+                        <ion-icon name="time-outline" color="primary"></ion-icon>
+                        <ion-text class="ion-text-center">
+                            <p>Solicitudes Pendientes </p>
+                        </ion-text>
+                    </ion-card>
+                </ion-col>
+
+                <ion-col size="6" *ngIf="validarRol(['Empleado'])"  >
+                    <ion-card color="light" (click)="navigateToPage('/reclamo-usuario')">
+                        <ion-icon name="alert-circle-outline" color="primary"></ion-icon>
+                        <ion-text>
+                            <p>Punto de reclamos</p>
+                        </ion-text>
+                    </ion-card>
+                </ion-col>
+                
                 <ion-col size="6" *ngIf="validarRol(['Administrador'])">
                     <ion-card color="light" (click)="navigateToPage('/crud-productos')">
                         <ion-icon name="book-outline" color="primary"></ion-icon>
@@ -116,6 +137,7 @@
                         </ion-text>
                     </ion-card>
                 </ion-col> 
+
                 <ion-col size="6" *ngIf="validarRol(['Administrador'])">
                     <ion-card color="light"  (click)="navigateToPage('/entregas-incompletas')">
                         <ion-icon name="document-text-outline" color="primary"></ion-icon>
@@ -124,11 +146,20 @@
                         </ion-text>
                     </ion-card>
                 </ion-col>
+
+                <ion-col size="6" *ngIf="validarRol(['Administrador'])">
+                    <ion-card color="light"  (click)="navigateToPage('/solicitudes-aceptadas')">
+                        <ion-icon name="document-text-outline" color="primary"></ion-icon>
+                        <ion-text>
+                            <p> Solicitudes Aceptadas </p>
+                        </ion-text>
+                    </ion-card>
+                </ion-col>
                 <ion-col size="6" *ngIf="validarRol(['Administrador'])"  >
                     <ion-card color="light" (click)="navigateToPage('/gestionar-historial')">
                         <ion-icon name="document-text-outline" color="primary"></ion-icon>
                         <ion-text>
-                            <p>Informe de requrimientos</p>
+                            <p>Solicitudes Completadas</p>
                         </ion-text>
                     </ion-card>
                 </ion-col> 
@@ -146,6 +177,24 @@
                         <ion-icon name="document-text-outline" color="primary"></ion-icon>
                         <ion-text>
                             <p>Gestionar Empresa</p>
+                        </ion-text>
+                    </ion-card>
+                </ion-col> 
+
+                <ion-col size="6" *ngIf="validarRol(['Administrador'])"  >
+                    <ion-card color="light" (click)="navigateToPage('/reporte-productos')">
+                        <ion-icon name="document-text-outline" color="primary"></ion-icon>
+                        <ion-text>
+                            <p>Reporte Productos</p>
+                        </ion-text>
+                    </ion-card>
+                </ion-col> 
+
+                <ion-col size="6" *ngIf="validarRol(['Administrador'])"  >
+                    <ion-card color="light" (click)="navigateToPage('/reclamos')">
+                        <ion-icon name="document-text-outline" color="primary"></ion-icon>
+                        <ion-text>
+                            <p>Reclamos</p>
                         </ion-text>
                     </ion-card>
                 </ion-col> 

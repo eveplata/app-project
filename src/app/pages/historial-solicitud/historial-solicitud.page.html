@@ -26,7 +26,7 @@
             <!-- de esta forma recuperas la fecha para que se muestre en el formato año/mes/dia hora/minuto/ segundo -->
             <h2>{{ h.fecha_solicitud['seconds'] * 1000 | date:'dd/MM/yyyy h:mm:ss a' }}</h2>
             <h3>{{h.empresa.nom_emp}}</h3>
-            <p>Estado: {{ h.estado }}</p>
+            <!-- <p>Estado: {{ h.estado }}</p> -->
             <!-- aqui vamos a crear una funcion para mostrar en ves de valor numerico un nombre literal de lo que significa el valor la funcion esta en .ts  -->
             <p>Estado: {{ getValorEstado(h.estado) }}</p>
           </ion-label>

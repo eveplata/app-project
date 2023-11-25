@@ -10,9 +10,9 @@ export class FirebaseStorageService {
     private fireStorage: AngularFireStorage,
   ) { }
 
-  subirArchivo(file: any, nomArchivo: string, path: string){
+  // subirArchivo(file: any, nomArchivo: string, path: string){
 
-    const filePath = path + '/' + nomArchivo;
+  //   const filePath = path + '/' + nomArchivo;
     /*const ref = this.fireStorage.ref(filePath);
     const task = ref.put(file);
 
@@ -24,5 +24,5 @@ export class FirebaseStorageService {
       
     })*/
 
-  }
+  // }
 }

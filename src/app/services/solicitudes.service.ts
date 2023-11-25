@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, from } from 'rxjs';
-import { Solicitud } from '../interfaces/solicitud.interface';
+import { ProductoSlt, Solicitud } from '../interfaces/solicitud.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -36,12 +36,55 @@ export class SolicitudesService {
       .valueChanges({ idField: 'id' });
   }
 
+  getSolicitudesPorEstado(estados: number[]): Observable<any> {
+    return this.firestore
+      .collection(
+        'solicitudes',
+        (ref) => ref.where('estado', 'in', estados)
+      )
+      .valueChanges({ idField: 'id' });
+  }
+
+  getProductosPorId(id_prod: string): Observable<any> {
+    return this.firestore
+      .collection('solicitudes')
+      .doc(id_prod)
+      .valueChanges({ idField: 'id' });
+  }
+
+  getSolicitudesConProducto(idProducto: string): Observable<Solicitud[]> {
+    return this.firestore
+      .collection<Solicitud>('solicitudes', (ref) =>
+        ref.where('productos', 'array-contains', { id_producto: idProducto }))
+      .valueChanges();
+  }
+  
+
   actualizarSolicitud(solicitud: Solicitud): Observable<any> {
     const solicitudId = solicitud.id; // Reemplaza con la forma correcta de obtener el ID de la solicitud
     // Actualiza la solicitud en la base de datos
     return from(this.firestore.collection('solicitudes').doc(solicitudId).update(solicitud));
   }
-
   
+  // actualizarStock(idSolicitud: string, producto: ProductoSlt): void {
+  //   this.firestore
+  //     .collection('solicitudes')
+  //     .doc(idSolicitud)
+  //     .get()
+  //     .subscribe((doc) => {
+  //       const solicitud = doc.data() as Solicitud;
+  //       if (solicitud) {
+  //         const productosActualizados = solicitud.productos.map((p: ProductoSlt) => {
+  //           if (p.id_producto === producto.id_producto) {
+  //             p.stock_act = producto.stock_act || 0;
+  //           }
+  //           return p;
+  //         });
+  //         solicitud.productos = productosActualizados;
+  
+  //         this.firestore.collection('solicitudes').doc(idSolicitud).update(solicitud);
+  //       }
+  //     });
+  // }
   
 }

@@ -1,0 +1,92 @@
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button size="small" (click)="backToPage()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Actualizar Usuario</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <app-loader *ngIf="isLoading"></app-loader>
+
+      <ion-card *ngIf="!isLoading">
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">Correo Electrónico</ion-label>
+              <ion-input type="email" [(ngModel)]="usuario.correo_usr" name="email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Nombre</ion-label>
+              <ion-input type="text" [(ngModel)]="usuario.nom_usr" name="nom_usr"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Primer Apellido</ion-label>
+              <ion-input type="text" [(ngModel)]="usuario.primer_ap" name="primer_ap"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Segundo Apellido</ion-label>
+              <ion-input type="text" [(ngModel)]="usuario.seg_ap" name="seg_ap"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Dirección</ion-label>
+              <ion-input type="text" [(ngModel)]="usuario.dir_usr" name="dir_usr"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Celular</ion-label>
+              <ion-input type="tel" [(ngModel)]="usuario.cel_usr" name="cel_usr"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Departamento</ion-label>
+              <ion-input type="text" [(ngModel)]="usuario.dep_usr" name="dep_usr"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Fecha de Nacimiento:</ion-label>
+              <ion-input type="date" name="fec_nac" required [(ngModel)]="usuario.fec_nac"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Fecha de ingreso:</ion-label>
+              <ion-input type="date" name="fec_reg_ing" required [(ngModel)]="usuario.fec_reg_ing"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Roles</ion-label>
+              <ion-select required 
+                name="roles" 
+                [(ngModel)]="usuarioRolesId" 
+                multiple="true">
+                <ion-select-option *ngFor="let r of roles" [value]="r.id">
+                  {{ r.nom_rol }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Empresas</ion-label>
+              <ion-select name="empresa" 
+                multiple="true"  
+                [(ngModel)]="usuarioEmpresasId" 
+                >
+                <ion-select-option *ngFor="let e of empresas" [value]="e.id">
+                  {{ e.nom_emp }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
+          <ion-button expand="full" shape="round" color="tertiary" (click)="guardarCambios()">Editar</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-content>
+

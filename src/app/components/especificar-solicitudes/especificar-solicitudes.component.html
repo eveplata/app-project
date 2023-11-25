@@ -7,42 +7,57 @@
             <ion-icon slot="icon-only" name="close"></ion-icon>
           </ion-button>
         </ion-buttons>
-        <ion-title>Solicitudes Realizadas</ion-title>
+        <ion-title>Solicitud Realizadas</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding centered-content">
-        <ion-list>
-          <p class="centered-text ion-padding">ADMINISTRADORA</p>
-          <p class="ion-padding">Entrega de productos y cantidad para: {{solicitud.empresa.nom_emp}}</p>
-          <p>Fecha de Solicitud: {{ solicitud.fecha_solicitud['seconds'] * 1000 | date:'dd/MM/yyyy h:mm:ss a' }}</p>
+      <ion-list>
+        <p class="centered-text ion-padding">ADMINISTRADORA</p>
+        <p class="ion-padding">Entrega de productos y cantidad para: {{solicitud.empresa.nom_emp}}</p>
+        <p>Fecha de Solicitud: {{ solicitud.fecha_solicitud['seconds'] * 1000 | date:'dd/MM/yyyy h:mm:ss a' }}</p>
 
-          <!-- Detalles de productos -->
-          <ion-card *ngFor="let p of solicitud.productos">
-            <ion-card-content>
-              <ion-list>
-                <ion-item>
-                  <ion-thumbnail slot="start">
-                    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-                  </ion-thumbnail>
-                  <div class="item-details">
-                    <ion-label>{{p.nom_prod}}</ion-label>
-                    <ion-label>Contenido: {{p.cont_prod + ' ' + p.uni_med_prod}}</ion-label>
-                  </div>
-                </ion-item>
-              </ion-list>
-            </ion-card-content>
-          </ion-card>
-        </ion-list>
-        <ion-textarea [(ngModel)]="comentario" placeholder="Agregar un comentario"></ion-textarea>
+        <ion-card *ngFor="let p of solicitud.productos">
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-thumbnail slot="start">
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                </ion-thumbnail>
+                <div class="item-details">
+                  <ion-label>{{ p.nom_prod }}</ion-label>
+                  <ion-label>Contenido: {{ p.cont_prod + ' ' + p.uni_med_prod }}</ion-label>
+                  <ion-label>Stock: {{ p.stock_act }}</ion-label>
 
-      <!-- Botones de Aceptar y Rechazar -->
+                  <ion-item>
+                    <ion-button (click)="decrementarCantidad(p)">-</ion-button>
+                    <ion-input [(ngModel)]="p.cantidad" type="number" min="0"></ion-input>
+                    <ion-button (click)="incrementarCantidad(p)">+</ion-button>
+                  </ion-item>
+                </div>
+              </ion-item>
+              <ion-item>
+                <div [ngClass]="{'stock-bajo-message': verificarStockBajo(p)}">
+                  <ion-label>
+                    {{ verificarStockBajo(p) ? 'Stock Bajo: ' + p.stock_act + ' unidades. Por favor, reabastece.' :
+                    'Stock: ' + p.stock_act + ' unidades' }}
+                  </ion-label>
+                </div>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+      <ion-textarea [(ngModel)]="comentario" placeholder="Agregar un comentario"></ion-textarea>
+
       <ion-row>
         <ion-col size="6">
-          <ion-button expand="full" color="success" (click)="aceptarSolicitud(); navegarASolicitudesPendientes()">Aceptar</ion-button>
+          <ion-button expand="full" color="success"
+            (click)="aceptarSolicitud(); navegarASolicitudesPendientes()">Aceptar</ion-button>
         </ion-col>
-        
+
         <ion-col size="6">
-          <ion-button expand="full" color="danger" (click)="rechazarSolicitud(); navegarASolicitudesPendientes()">Rechazar</ion-button>
+          <ion-button expand="full" color="danger"
+            (click)="rechazarSolicitud(); navegarASolicitudesPendientes()">Rechazar</ion-button>
         </ion-col>
       </ion-row>
 

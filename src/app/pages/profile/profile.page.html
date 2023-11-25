@@ -1,5 +1,5 @@
 
-<ion-content class="ion-padding">
+<ion-content >
 
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -7,7 +7,7 @@
         <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
       </ion-button>
     </ion-buttons>
-  <ion-toggle slot="end">Oscuro</ion-toggle>    
+  <!-- <ion-toggle slot="end">Oscuro</ion-toggle>     -->
   </ion-toolbar>
 
   <app-loader *ngIf="isLoading"></app-loader>
@@ -15,12 +15,14 @@
   <ion-grid class="cuerpo" *ngIf="!isLoading">
     <ion-row>
       <ion-col size="12">
-          <ion-item lines="none" class="item-header" style="margin-top: -40px;">
+          <ion-item lines="none" class="item-header" style="margin-top: 0px;">
               <div class="background-image">
-                  <ion-img src="/../assets/images/logo.png" alt="Logo" class="logo"></ion-img>
+                  <ion-img src="/../assets/images/fondo.jpg" alt="Logo" class="logo"></ion-img>
               </div>
           </ion-item>
       </ion-col>
+      
+      
       
       <ion-col size="12" class="ion-text-center">
         <div class="overlay-image">
@@ -36,7 +38,7 @@
     </ion-col>
   </ion-row>
 
-  <ion-list >
+  <ion-list class="ion-padding">
     <ion-item >
       <ion-icon name="person-sharp" slot="start"></ion-icon>
       <ion-label>
@@ -99,7 +101,7 @@
           </tr>
           <tr>
             <!-- <td style="margin-left: 10px;">{{usuario.fec_nac}}</td> -->
-            <td style="margin-left: 10px;" *ngIf="usuario.fec_nac">{{ formatTimestamp(usuario.fec_nac) }}</td>
+            <td style="margin-left: 10px;" *ngIf="usuario.fec_nac">{{usuario.fec_nac }}</td>
           </tr>
         </table>
       </ion-label>
@@ -125,7 +127,7 @@
             <td style="opacity: 0.5;">Fecha de Ingreso</td>
           </tr>
           <tr>
-            <td style="margin-left: 10px;" *ngIf="usuario.fec_reg_ing">{{ formatTimestamp(usuario.fec_reg_ing) }}</td>
+            <td style="margin-left: 10px;" *ngIf="usuario.fec_reg_ing">{{ usuario.fec_reg_ing }}</td>
           </tr>
         </table>
       </ion-label>

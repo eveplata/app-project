@@ -16,18 +16,8 @@
       <ion-list>
         <p class="centered-text ion-padding">ADMINISTRADORA</p>
         <p class="ion-padding">Entrega de productos y cantidad para: {{solicitud.empresa.nom_emp}}</p>
+        <p> Fecha Solicitud: {{ solicitud.fecha_solicitud['seconds'] * 1000 | date:'dd/MM/yyyy h:mm:ss a' }}</p>
         <p>Fecha de entrega: {{ getCurrentDate() }} </p>
-        <!-- <ion-textarea>Comentar{{solicitud.comentario}}</ion-textarea> -->
-
-        <!-- <p>Fecha de entrega: {{ solicitud.fecha_entrega['seconds'] * 1000 | date:'dd/MM/yyyy h:mm:ss a' }}</p> -->
-        <!-- *ngFor="let de of notas.datos.detalleElementos; let indice = index" -->
-        <!-- <ion-card *ngFor="let p of solicitud.productos">
-          <ion-card-content>
-            <ion-item>
-              <ion-label>{{p.nom_prod}}</ion-label>
-            </ion-item>
-          </ion-card-content>
-        </ion-card> -->
         <ion-card *ngFor="let p of solicitud.productos">
           <ion-card-content>
             <ion-list>

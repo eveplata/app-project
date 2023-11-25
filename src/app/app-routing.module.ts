@@ -126,11 +126,52 @@ const routes: Routes = [
   },
   {
     path: 'registro',
-    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
-  },  {
-    path: 'crear-usuario',
-    loadChildren: () => import('./pages/crear-usuario/crear-usuario.module').then( m => m.CrearUsuarioPageModule)
+    loadChildren: () => 
+    import('./pages/registro/registro.module')
+    .then( m => m.RegistroPageModule)
   },
+  {
+    path: 'crear-usuario',
+    loadChildren: () => 
+    import('./pages/crear-usuario/crear-usuario.module')
+    .then( m => m.CrearUsuarioPageModule)
+  },
+  {
+    path: 'password',
+    loadChildren: () => 
+    import('./pages/password/password.module')
+    .then( m => m.PasswordPageModule)
+  },
+  {
+    path: 'editar-usuario',
+    loadChildren: () => 
+    import('./pages/editar-usuario/editar-usuario.module')
+    .then( m => m.EditarUsuarioPageModule)
+  },
+  {
+    path: 'reporte-productos',
+    loadChildren: () => 
+    import('./pages/reporte-productos/reporte-productos.module')
+    .then( m => m.ReporteProductosPageModule)
+  },
+  {
+    path: 'solicitudes-aceptadas',
+    loadChildren: () => 
+    import('./pages/solicitudes-aceptadas/solicitudes-aceptadas.module')
+    .then( m => m.SolicitudesAceptadasPageModule)
+  },  {
+    path: 'solicitudes-aceptadas-usuario',
+    loadChildren: () => import('./pages/solicitudes-aceptadas-usuario/solicitudes-aceptadas-usuario.module').then( m => m.SolicitudesAceptadasUsuarioPageModule)
+  },
+  {
+    path: 'reclamos',
+    loadChildren: () => import('./pages/reclamos/reclamos.module').then( m => m.ReclamosPageModule)
+  },
+  {
+    path: 'reclamo-usuario',
+    loadChildren: () => import('./pages/reclamo-usuario/reclamo-usuario.module').then( m => m.ReclamoUsuarioPageModule)
+  },
+
 
 
 

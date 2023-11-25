@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, from, throwError } from 'rxjs'; // Agrega throwError
+import { Observable, from, throwError } from 'rxjs'; 
 import { mergeMap } from 'rxjs/operators';
 import { Producto } from '../interfaces/productos.interface';
 
@@ -18,6 +18,7 @@ export class ProductosService {
       .collection('productos')
       .valueChanges({ idField: 'id' });
   }
+
   getProductosPorId(id_prod: string): Observable<any> {
     return this.firestore
       .collection('productos')
@@ -34,34 +35,24 @@ export class ProductosService {
       .valueChanges({ idField: 'id' });
   }
 
-  actualizarStock(idProducto: string, cantidadARestar: number): void {
+  actualizarStock(id_prod: string, cantidadARestar: number): void {
     this.firestore
       .collection('productos')
-      .doc(idProducto)
+      .doc(id_prod)
       .get()
       .subscribe((doc) => {
         const producto = doc.data() as Producto;
         if (producto) {
-          // Resta la cantidadARestar del stock actual del producto
           producto.stock_act -= cantidadARestar;
 
-          // Actualiza el producto en la base de datos
-          this.firestore.collection('productos').doc(idProducto).update(producto);
+          this.firestore.collection('productos').doc(id_prod).update(producto);
         }
       });
 
   }
 
-  // actualizarProducto(producto: Producto): Observable<any> {
-  //   const productoId = producto.id;
-  //   // Con el método set, sobrescribimos todo el documento del producto
-  //   return from(this.firestore.collection('productos').doc(productoId).set(producto));
-  // }
-
-
   actualizarProducto(producto: Producto): Observable<any> {
-    const productoId = producto.id; // Reemplaza con la forma correcta de obtener el ID de la solicitud
-    // Actualiza la solicitud en la base de datos
+    const productoId = producto.id; 
     return from(this.firestore.collection('productos').doc(productoId).update(producto));
   }
 

@@ -69,5 +69,9 @@ export class UsuariosService {
       .collection('usuarios')
       .add(usuario));
  }
+ actualizarUsuario(usuario: Usuario): Observable<any> {
+  const usuarioId = usuario.id; 
+  return from(this.firestore.collection('usuarios').doc(usuarioId).update(usuario));
+}
 
 }

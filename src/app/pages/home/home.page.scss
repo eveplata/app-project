@@ -6,11 +6,11 @@ ion-icon {
     text-align: center;
     
   }
-  .custom-image {
-    width: 500px; /* Ancho deseado */
-    height: 500px; /* Alto deseado, ajusta esto para hacerlo cuadrado */
-    object-fit: cover; /* Para asegurarte de que la imagen se ajuste al cuadro sin deformarse */
-  }
+  // .custom-image {
+  //   width: 500px; /* Ancho deseado */
+  //   height: 500px; /* Alto deseado, ajusta esto para hacerlo cuadrado */
+  //   object-fit: cover; /* Para asegurarte de que la imagen se ajuste al cuadro sin deformarse */
+  // }
   .disabled-button {
     opacity: 0.5; /* Cambia la opacidad del botón */
     pointer-events: none; /* Evita que se pueda hacer clic en el botón */

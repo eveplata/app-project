@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
 import { UsuariosService } from 'src/app/services/usuarios.service';
@@ -12,9 +13,12 @@ export class GestionarUsuariosPage implements OnInit {
 
   id_usr!: string;
   isModalOpen: boolean = false;
+  isVerUsuarioOpen: boolean = false;
+  isEditaUsuarioOpen: boolean = false;
   isLoading: boolean = true;
   usuarios: Usuario[] = [];
   mUsuario!: Usuario;
+  isEditarUsuario: boolean = false;
 
   constructor(
     private navCtrl: NavController,
@@ -58,20 +62,48 @@ export class GestionarUsuariosPage implements OnInit {
   }
 
   editarUsuario(usuario: Usuario) {
-    // Lógica para editar el usuario
+    // this.isEditaUsuarioOpen = true;
+    // this.mUsuario = usuario;
+    // this.isEditarUsuario = true;
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          usuario: JSON.stringify(usuario)
+      }
+    };
+  //this.navCtrl.navigateForward(['page-slug'], true, navigationExtras);
+    this.navCtrl.navigateForward(['editar-usuario'], navigationExtras);
+
+
   }
   
   eliminarUsuario(usuario: Usuario) {
-    // Lógica para eliminar el usuario
+    usuario.estado = 0;
+    this.usuariosServices.actualizarUsuario(usuario).subscribe((resp) => {
+      console.log('Usuario cambiado a estado inactivo:', resp);
+      this.listarUsuarios();
+    });
+
   }
   
   verUsuario(usuario: Usuario) {
-    // Lógica para eliminar el usuario
   }
 
 
   backToPage() {
     this.navCtrl.navigateBack('home');
+  }
+  openModal(usuario:Usuario) {
+    // this.isVerUsuarioOpen = true;
+    this.isEditaUsuarioOpen = true;
+    this.isEditarUsuario = true;
+
+    // this.mUsuario = usuario;
+  }
+
+  closeModal(event: any) {
+    console.log(event);
+    this.isEditaUsuarioOpen = event;
+    this.isEditarUsuario = false;
   }
 
 

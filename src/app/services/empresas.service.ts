@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, from } from 'rxjs';
 import { Empresa } from '../interfaces/empresas.interface';
 import { EmpresaUsuarioService } from './empresa-usuario.service';
+import { UsuarioEmpresas } from '../interfaces/usuarioEmpresas.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,13 @@ crearEmpUsr(empresaUsr: EmpresaUsuarioService): Observable<any> {
     .collection('usuario_empresa')
     .add(empresaUsr));
 }
+
+  actualizarUsuarioEmpresa(usuarioEmpresa: UsuarioEmpresas): Observable<any> {
+    const usuarioEmpresaId = usuarioEmpresa.id; 
+    return from(this.firestore.collection('usuario_empresa').doc(usuarioEmpresaId).update(usuarioEmpresa));
+  }
+
+
 
 }
   

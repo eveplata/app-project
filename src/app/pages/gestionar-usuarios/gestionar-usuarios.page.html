@@ -11,6 +11,20 @@
 <ion-content class="ion-padding">
   <app-loader *ngIf="isLoading"></app-loader>
   <ion-grid *ngIf="!isLoading">
+
+    <div *ngIf="isEditarUsuario">
+
+      <app-editar-usuario
+      [isEditaUsuarioOpen]="isEditaUsuarioOpen"
+      [usuario]="mUsuario"
+      (closeModal)="closeModal($event)">
+      </app-editar-usuario>
+    </div>
+
+
+      <!-- *ngIf="isEditarUsuario" -->
+
+
     <ion-card *ngFor="let u of usuarios">
       <!-- <ion-card-header>
           <ion-card-title>{{ u.nom_usr }} {{ u.primer_ap }} {{ u.seg_ap }}</ion-card-title>

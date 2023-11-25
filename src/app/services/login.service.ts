@@ -56,5 +56,9 @@ export class LoginService {
     return this.fireAuth.createUserWithEmailAndPassword(email, password);
   }
 
+  sendPasswordResetEmail(email: string) {
+    return this.fireAuth.sendPasswordResetEmail(email);
+  }
+
 
 }

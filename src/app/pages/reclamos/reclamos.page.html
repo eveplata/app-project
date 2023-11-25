@@ -1,0 +1,44 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Formulario de Reclamos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<ion-grid >
+  <ion-row>  
+    <ion-col >
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input type="text" [value]="nombreCompleto" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-select
+            placeholder="Seleccione la Empresa"
+            (ionChange)="handleChange($event)"
+            (ionCancel)="handleCancel()"
+            (ionDismiss)="handleDismiss()">
+            <ion-select-option *ngFor="let e of usuarioEmpresas.empresas;" [value]="e">{{ e.nom_emp }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Asunto</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label position="floating">Descripción del reclamo</ion-label>
+          <ion-textarea></ion-textarea>
+        </ion-item>
+        <ion-button expand="full" color="primary" (click)="enviarReclamo()">Enviar Reclamo</ion-button>
+
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+</ion-content> -->

@@ -34,13 +34,16 @@ export class CrearUsuarioPage implements OnInit {
   uid!: string;
   roles: Roles[] = [];
   registroEnProceso = false;
-  //rolesSeleccionados: RolesUsr[] = [];
-  ///empresasSeleccionados: EmpresaUsrEp[] = [];
   usuarioEmpresas: UsuarioEmpresas = {
     empresas: [],
     id_usr: ''
   };
   empresas: Empresa[] = [];
+  isLoading: boolean = true;
+  mostrarContrasena: boolean = false;
+  iconoContrasena: string = 'eye';
+
+
 
   constructor(
     private navCtrl: NavController,
@@ -68,6 +71,8 @@ export class CrearUsuarioPage implements OnInit {
       });
 
       console.log('empresas', this.empresas);
+      this.isLoading = false;
+
     });
   }
 
@@ -87,7 +92,8 @@ export class CrearUsuarioPage implements OnInit {
         console.log('Usuario registrado, ID:', result.user.uid);
 
         this.uid = result.user.uid;
-        //this.usuario.id = this.uid;
+        this.usuario.correo_usr = this.email;
+       //this.usuario.id = this.uid;
 
         this.firestore.collection('usuarios').doc(this.uid).set(this.usuario).then(res => {
           console.log('Registro de usuario exitoso!', res);
@@ -97,8 +103,10 @@ export class CrearUsuarioPage implements OnInit {
             
   
           })
+          this.navCtrl.navigateForward('/gestionar-usuarios');
 
-        })
+
+        });
   
         //console.log('Usuario registrado en la colección "usuarios"');
         //this.mostrarMensaje('Usuario registrado con éxito.');
@@ -106,7 +114,7 @@ export class CrearUsuarioPage implements OnInit {
         
 
       } else {
-        this.mostrarError('El registro no se completó con éxito.');
+        this.mostrarMensaje('El registro no se completó con éxito.');
       }
     })
     .catch((error) => {
@@ -114,6 +122,17 @@ export class CrearUsuarioPage implements OnInit {
       this.mostrarError('Ha ocurrido un error durante el registro. Por favor, inténtalo de nuevo.');
     });
   }
+
+  
+async mostrarMensaje(mensaje: string) {
+  const toast = await this.toastController.create({
+    message: mensaje,
+    duration: 3000,
+    position: 'top',
+    color: 'success', 
+  });
+  toast.present();
+}
 
   async mostrarError(mensaje: string) {
     const toast = await this.toastController.create({
@@ -124,6 +143,11 @@ export class CrearUsuarioPage implements OnInit {
     });
     toast.present();
   }
+
+toggleMostrarContrasena() {
+  this.mostrarContrasena = !this.mostrarContrasena;
+  this.iconoContrasena = this.mostrarContrasena ? 'eye-off' : 'eye';
+}
 
   backToPage() {
     this.navCtrl.navigateBack('/gestionar-usuarios');

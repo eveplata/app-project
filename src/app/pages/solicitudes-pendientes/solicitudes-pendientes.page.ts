@@ -29,7 +29,7 @@ export class SolicitudesPendientesPage implements OnInit {
   }
 
   listarSolicitudes() {
-    const estadosPermitidos = [0, 2];
+    const estadosPermitidos = [0];
     this.solicitudesService.getSolicitudes().subscribe((solicitudes: Solicitud[]) => {
       // Filtrar las solicitudes por estado 0, 1 y 2
       this.solicitudes = solicitudes.filter(solicitud => estadosPermitidos.includes(solicitud.estado));

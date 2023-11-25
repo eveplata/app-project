@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
   passwordTypeInput = 'password';
   formLogin: FormGroup;
   errorMsg: String = 'No se pudo iniciar sesión';
+  isUserRegistered: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,6 +60,7 @@ export class LoginPage implements OnInit {
         }
         if (err.code.includes('auth/invalid')) {
           this.errorMsg = 'No se pudo iniciar sesión';
+          this.isUserRegistered = false;
         }
         loading.dismiss();
         console.log('err', err.code);

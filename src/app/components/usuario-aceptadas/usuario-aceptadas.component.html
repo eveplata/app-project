@@ -1,0 +1,69 @@
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          <ion-button size="small" (click)="backToPage()">
+            <ion-icon slot="icon-only" name="close"></ion-icon> 
+          </ion-button>
+        </ion-buttons>
+        <ion-title >Solicitudes Aceptadas</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding centered-content">
+      <ion-list>
+        <p class="centered-text ion-padding">ADMINISTRADORA</p>
+        <p class="ion-padding">Entrega de productos y cantidad para: {{solicitud.empresa.nom_emp}}</p>
+        <p class="ion-padding">Fecha de entrega: {{ getCurrentDate() }}</p>
+        <ion-card *ngFor="let p of solicitud.productos">
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <!-- <ion-thumbnail slot="start">
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                </ion-thumbnail> -->
+                <div class="item-details">
+                  <ion-label>{{p.nom_prod}}</ion-label>
+                  <ion-label>Contenido: {{ p ? (p.cont_prod + ' ' + (p.uni_med_prod || 'sin unidad')) : 'sin producto' }}</ion-label>
+                  <ion-label>Marca: {{ p.marca || 'sin marca' }}</ion-label>
+                    <ion-label>Cantidad {{p.cantidad}}</ion-label>
+                </div>
+                <div>
+                  <!-- <ion-checkbox (ionChange)="checkboxClick($event, p)" [checked]="isChecked(p.id)" labelPlacement="end" class="product-checkbox"></ion-checkbox> -->
+                  <!-- <ion-checkbox (ionChange)="checkboxClick($event, index)" [checked]="isChecked(index)" labelPlacement="end" class="product-checkbox"></ion-checkbox> -->
+                  <ion-checkbox  labelPlacement="end" class="product-checkbox" (ionChange)="checkboxClick($event, p)" [checked]="p.entregado"></ion-checkbox>
+                </div>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+        <ion-item>
+          <ion-label>
+            <p>Comentario</p>
+          <ion-textarea name="descripcion" rows="4" [(ngModel)]="solicitud.comentario"></ion-textarea>
+        </ion-label >
+        </ion-item>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card color="light" (click)="aceptarSolicitud()">
+              <ion-text class="ion-text-center">
+                <ion-item>
+                  <ion-label class="ion-text-center">Completado</ion-label>
+                </ion-item>
+              </ion-text>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6">
+            <ion-card  color="light" (click)="guardarSolicitud()">
+              <ion-text class="ion-text-center">
+                <ion-item>
+                  <ion-label class="ion-text-center">Guardar</ion-label>
+                </ion-item>
+              </ion-text>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

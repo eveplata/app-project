@@ -52,26 +52,34 @@ export class CompletarSolicitudesComponent  implements OnInit {
     this.closeModal.emit(this.isModalOpen);
   }
 
-  isChecked(idProducto: string): boolean {
-    const exist = this.productos.find((p) => p.id_producto === idProducto);
-    return exist != undefined ? true : false;
-  }
+  // isChecked(idProducto: string): boolean {
+  //   const exist = this.productos.find((p) => p.id_producto === idProducto);
+  //   return exist != undefined ? true : false;
+  // }
 
 // Función para manejar el cambio de estado del checkbox
-checkboxClick(e: any, productoSlt: ProductoSlt) {
-  const idProducto = productoSlt.id_producto;
+// checkboxClick(e: any, productoSlt: ProductoSlt) {
+//   const idProducto = productoSlt.id_producto;
 
-  if (e.currentTarget.checked) {
-    const existe = this.productos.find((p) => p.id_producto === idProducto);
-    if (existe == null) {
-      this.productos.push(productoSlt);
-    }
-  } else {
-    this.productos = this.productos.filter(
-      (p) => p.id_producto !== idProducto
-    );
-  }
-}
+//   if (e.currentTarget.checked) {
+//     const existe = this.productos.find((p) => p.id_producto === idProducto);
+//     if (existe == null) {
+//       this.productos.push(productoSlt);
+//     }
+//   } else {
+//     this.productos = this.productos.filter(
+//       (p) => p.id_producto !== idProducto
+//     );
+//   }
+// }
+// isChecked(idProducto: string): boolean {
+//   if (this.productos) {
+//     const exist = this.productos.find((p) => p.id_producto === idProducto);
+//     return exist != undefined ? true : false;
+//   }
+//   return false;
+// }
+
 
 
 }

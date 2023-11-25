@@ -68,7 +68,7 @@ export class SeleccionarProductosComponent implements OnInit {
   isChecked(idProducto: string) {
     const exist = this.productosSeleccionados.find(p => p.id === idProducto);
     //console.log('checked', idProducto+' - '+exist?.id);
-    return exist!= undefined ? true : false;    
+    return exist != undefined ? true : false;    
   }
 
   checkboxClick(e: any, producto: Producto) {

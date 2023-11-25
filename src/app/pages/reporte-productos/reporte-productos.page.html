@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-button size="small">
+        <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Reporte de Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <ion-grid *ngIf="!isLoading">
+      <ion-card *ngFor="let r of reporteProductosSA;">
+        <ion-card-header>
+          <ion-card-title>{{ r.nom_prod }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label>Marca: {{ r.marca }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Medida: {{ r.cont_prod }} {{ r.uni_med_prod }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Cantidad: {{ r.cantidad }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Empresas solicitantes:</ion-label>
+          </ion-item>
+          <ion-item>
+            <div *ngFor="let e of r.empresas;">
+              <p>* {{ e.nom_emp }}</p><br>
+            </div>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+  </ion-grid>  
+</ion-content>

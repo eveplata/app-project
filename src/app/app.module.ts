@@ -17,6 +17,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+// import { provideStorage, getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,8 +28,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     HttpClientModule,
     IonicStorageModule.forRoot(),
     ComponentsModule,
-    //provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    //provideFirestore(() => getFirestore()),
+    // provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    // provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireStorageModule,

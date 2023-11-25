@@ -17,6 +17,10 @@ import { CompletarSolicitudesComponent } from './completar-solicitudes/completar
 import { ReporteHistorialComponent } from './reporte-historial/reporte-historial.component';
 import { VerEmpresaComponent } from './ver-empresa/ver-empresa.component';
 import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.component';
+import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
+import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
+import { UsuarioAceptadasComponent } from './usuario-aceptadas/usuario-aceptadas.component';
+import { SolicitudesAceptadasAdminComponent } from './solicitudes-aceptadas-admin/solicitudes-aceptadas-admin.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.componen
     ReporteHistorialComponent,
     VerEmpresaComponent,
     EditarEmpresaComponent,
+    EditarUsuarioComponent,
+    VerUsuarioComponent,
+    UsuarioAceptadasComponent,
+    SolicitudesAceptadasAdminComponent,
 
   ],
   exports: [
@@ -51,6 +59,12 @@ import { EditarEmpresaComponent } from './editar-empresa/editar-empresa.componen
     ReporteHistorialComponent,
     VerEmpresaComponent,
     EditarEmpresaComponent,
+    EditarUsuarioComponent,
+    VerUsuarioComponent,
+    UsuarioAceptadasComponent,
+    SolicitudesAceptadasAdminComponent,
+
+    
 
   ],
   imports: [
