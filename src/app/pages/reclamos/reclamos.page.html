@@ -1,4 +1,4 @@
-<!-- <ion-header [translucent]="true">
+<ion-header [translucent]="true">
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-back-button default-href="#" (click)="backToPage()"></ion-back-button>
@@ -8,37 +8,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<ion-grid >
-  <ion-row>  
-    <ion-col >
-      <ion-list>
-        <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input type="text" [value]="nombreCompleto" readonly></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-select
-            placeholder="Seleccione la Empresa"
-            (ionChange)="handleChange($event)"
-            (ionCancel)="handleCancel()"
-            (ionDismiss)="handleDismiss()">
-            <ion-select-option *ngFor="let e of usuarioEmpresas.empresas;" [value]="e">{{ e.nom_emp }}</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Asunto</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-    
-        <ion-item>
-          <ion-label position="floating">Descripción del reclamo</ion-label>
-          <ion-textarea></ion-textarea>
-        </ion-item>
-        <ion-button expand="full" color="primary" (click)="enviarReclamo()">Enviar Reclamo</ion-button>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card *ngFor="let r of reclamos">
+          <ion-card-header>
+            <ion-card-title>{{ r.asunto }}</ion-card-title>
+            <p>Fecha: {{ r.fecha['seconds'] * 1000 | date:'dd/MM/yyyy h:mm:ss a'  }}</p>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Usuario: {{ r.nom_usr }} {{ r.primer_ap }} {{ r.seg_ap }}</p>
+            <p>Empresa: {{ r.nom_emp }}</p>
+            <p>Descripción: {{ r.descripcion }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
 
-      </ion-list>
-    </ion-col>
-  </ion-row>
-</ion-grid>
 
-</ion-content> -->

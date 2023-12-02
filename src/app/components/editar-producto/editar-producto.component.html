@@ -46,9 +46,7 @@
           </ion-select>
         </ion-item> -->
         
-        
-        
-    <!-- editar-producto.component.html -->
+      
       <ion-item>
         <ion-label position="stacked">Categoría</ion-label>
         <ion-select [(ngModel)]="producto.categorias.nombre" name="categoria">
@@ -78,6 +76,21 @@
             <ion-select-option [value]="0">Inactivo</ion-select-option>
           </ion-select>
         </ion-item>
+
+        <!-- <ion-item>
+          <ion-label class="normal">Imagen</ion-label>
+          <ion-buttons slot="end">
+            <ion-button>
+              <label for="file-upload">                
+                <ion-icon slot="icon-only" name="images"></ion-icon>
+              </label>
+              <input (change)="newImage($event)" id="file-upload" type="file" accept="image/*" style="display: none;" #fileInput>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+         -->
+        <!-- <img [src]="p.imagen"> -->
+        
                        
       </ion-list>   
       

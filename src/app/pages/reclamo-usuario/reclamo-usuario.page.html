@@ -25,12 +25,12 @@
         
         <ion-item>
           <ion-label position="floating">Asunto</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input [(ngModel)]="reclamo.asunto"  type="text"></ion-input>
         </ion-item>
     
         <ion-item>
           <ion-label position="floating">Descripción del reclamo</ion-label>
-          <ion-textarea></ion-textarea>
+          <ion-textarea [(ngModel)]="reclamo.descripcion"></ion-textarea>
         </ion-item>
       </ion-list>
       <ion-button expand="full" color="primary" (click)="enviarReclamo()">Enviar Reclamo</ion-button>
