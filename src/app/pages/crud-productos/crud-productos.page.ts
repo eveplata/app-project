@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/app/interfaces/productos.interface';
 import { ProductosService } from 'src/app/services/productos.service';
 import { NavController } from '@ionic/angular';
+import { ImgbbService } from 'src/app/services/imgbb.service';
 
 @Component({
   selector: 'app-crud-productos',
@@ -15,11 +16,13 @@ export class CrudProductosPage implements OnInit {
   isVerProductoOpen: boolean = false;
   isEditarProductoOpen: boolean = false;
   mProducto!: Producto;
+  nuevaImagen = '';
   // idCategoriaSeleccionada: string;
 
   constructor(
     private productosService: ProductosService,
     private navCtrl: NavController,
+    private imgbbService: ImgbbService,     
 
   ) { }
 

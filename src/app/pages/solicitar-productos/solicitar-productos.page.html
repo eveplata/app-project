@@ -40,7 +40,7 @@
           <!-- lista productos seleccionados -->
           <!-- *ngFor="let de of notas.datos.detalleElementos; let indice = index" -->
           <ion-card *ngFor="let p of productosSeleccionados;">
-            <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> -->
+            <img [src]="p.imagen" alt="Imagen cargada" />            
             <ion-card-header>
               <ion-card-title>{{ p.nom_prod }}</ion-card-title>
               <ion-card-subtitle>Categoría: {{ p.categorias.nombre }}</ion-card-subtitle>

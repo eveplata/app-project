@@ -57,7 +57,7 @@ export class CrearProductosPage implements OnInit {
   }
   crearProducto() {
     if (this.agregarProducto) {
-      return; // Evitar múltiples clics
+      return; 
     }
   
     this.agregarProducto = true;

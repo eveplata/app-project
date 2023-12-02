@@ -25,6 +25,7 @@
     
 
       <ion-card *ngFor="let p of productos;">
+        <img [src]="p.imagen" alt="Imagen cargada" />
         <ion-card-header>
             <ion-card-title>{{ p.nom_prod }}</ion-card-title>
         </ion-card-header>
