@@ -104,6 +104,7 @@ export class RevisarSolicitudComponent implements OnInit {
     //this.navCtrl.navigateBack('solicitudes-activas');
     this.isModalOpen = false;
     this.navCtrl.navigateBack('/home');
+    //este codigo no va aqui
     /* this.closeModal.emit(this.isModalOpen);
     this.solicitud.estado = 1;
     this.solicitud.fecha_entrega = this.getCurrentDate();
