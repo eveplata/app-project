@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -28,6 +28,22 @@ export class ImgbbService {
         })
       );
 
+  }
+
+  editarImagen(file: File, imageId: string): Observable<Imgbb> {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    // Definir los encabezados de la solicitud
+    const headers = new HttpHeaders({
+      'Content-Type': 'multipart/form-data'
+    });
+
+    // Enviar la solicitud PUT para editar la imagen con el ID correspondiente
+    return this.httpClient.put<Imgbb>(`${environment.urlImgbb}/edit/${imageId}`, formData, {
+      headers: headers,
+      params: { key: environment.apiKeyImgbb },
+    });
   }
 
 }

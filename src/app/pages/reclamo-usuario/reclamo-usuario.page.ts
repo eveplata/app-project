@@ -20,6 +20,7 @@ export class ReclamoUsuarioPage implements OnInit {
   usuario!: Usuario;
   isLoading: boolean = true;
   nombreCompleto!: string;
+  reclamo: any = {};
   // formReclamo: FormGroup;
 
   constructor(
@@ -100,14 +101,31 @@ export class ReclamoUsuarioPage implements OnInit {
       id_emp: this.empresaSeleccionada?.id_emp || '', 
       nom_emp: this.empresaSeleccionada?.nom_emp || '', 
       fecha: new Date(), 
-      descripcion: '', 
-      asunto: '' 
+      descripcion: this.reclamo.descripcion, 
+      asunto: this.reclamo.asunto 
     };
   
     this.reclamosService.crearReclamo(reclamo).subscribe((resp) => {
       console.log('Reclamo enviado', resp);
+      this.mostrarAlerta();
     });
   }
+  
+  async mostrarAlerta() {
+    const alert = await this.alertController.create({
+      header: 'Reclamo enviado',
+      message: 'Tu reclamo ha sido enviado correctamente.',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          this.navCtrl.navigateBack('home');
+        }
+      }]
+    });
+  
+    await alert.present();
+  }
+  
   
 
 

@@ -26,6 +26,7 @@
 
       <ion-card *ngFor="let p of productos;">
         <img [src]="p.imagen" alt="Imagen cargada" />
+        <!-- <img [src]="p.imagen ? p.imagen : '/../assets/images//icono.png'" alt="Imagen cargada" /> -->
         <ion-card-header>
             <ion-card-title>{{ p.nom_prod }}</ion-card-title>
         </ion-card-header>
