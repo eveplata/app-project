@@ -13,7 +13,7 @@
   <app-loader *ngIf="isLoading"></app-loader>
   <ion-grid *ngIf="!isLoading">
     <ion-list>
-      <app-revisar-solicitud 
+      <app-revisar-solicitud *ngIf="isModalOpen"
         [isModalOpen]="isModalOpen"
         [solicitud]="mSolicitud"
         (closeModal)="closeModal($event)" ></app-revisar-solicitud>

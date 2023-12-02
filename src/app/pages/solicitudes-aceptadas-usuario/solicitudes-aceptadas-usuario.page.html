@@ -13,10 +13,11 @@
   <app-loader *ngIf="isLoading"></app-loader>
   <ion-grid *ngIf="!isLoading">
     <ion-list>
-      <app-usuario-aceptadas 
-        [isModalOpen]="isModalOpen"
-        [solicitud]="mSolicitud"
-        (closeModal)="closeModal($event)" ></app-usuario-aceptadas>
+
+      <app-usuario-aceptadas *ngIf="isModalOpen"
+      [isModalOpen]="isModalOpen"
+      [solicitud]="mSolicitud"
+      (closeModal)="closeModal($event)" ></app-usuario-aceptadas>
       
       <ion-item *ngFor="let hA of hActivo;" (click)="openModal(hA)">
         <ion-icon slot="start" name="receipt-outline" color="primary"></ion-icon>

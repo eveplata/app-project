@@ -15,9 +15,11 @@ export class UsuarioAceptadasComponent  implements OnInit {
   @Input() isModalOpen!: boolean;
   @Input() solicitud!: Solicitud;
   @Output() closeModal: EventEmitter<boolean> = new EventEmitter();
-  @Output() productosSeleccionados: EventEmitter<ProductoSlt[]> = new EventEmitter();
+  //@Output() productosSeleccionados: EventEmitter<ProductoSlt[]> = new EventEmitter();
 
-  fecha_entrega: string; 
+  fecha_entrega: string;
+  productos: Producto[] = [];
+  productosActualizar: Producto[] = [];
   
 
   constructor(
@@ -29,7 +31,16 @@ export class UsuarioAceptadasComponent  implements OnInit {
 
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('solicitud', this.solicitud);
+    this.solicitud.productos.forEach((p) => {
+      if(p.entregado === false) {
+        this.productosService.getProductosPorId(p.id_producto).subscribe(resp => {
+          this.productos.push(resp);
+        });
+      }
+    });
+  }
 
   getCurrentDate(): string {
     const currentDate = new Date();
@@ -46,31 +57,55 @@ export class UsuarioAceptadasComponent  implements OnInit {
 
   aceptarSolicitud() {
     this.solicitud.estado = 3;
-    this.solicitud.fecha_entrega = this.getCurrentDate(); 
+    this.solicitud.fecha_entrega = this.getCurrentDate();
+    
+    this.actualizarStock();
 
     this.solicitudesService.actualizarSolicitud(this.solicitud).subscribe((resp) => {
       console.log('Solicitud aceptada');
       this.isModalOpen = false;
-      this.closeModal.emit(this.isModalOpen);
+      //this.closeModal.emit(this.isModalOpen);
+      this.navCtrl.navigateBack('/home');
     });
   }
 
-    guardarSolicitud(){
+  guardarSolicitud(){
     this.solicitud.estado = 1;
     this.solicitud.fecha_entrega = this.getCurrentDate(); 
+    
+    this.actualizarStock();
 
     this.solicitudesService.actualizarSolicitud(this.solicitud).subscribe((resp) => {
       console.log('Solicitud Activa');
       this.isModalOpen = false;
-      this.closeModal.emit(this.isModalOpen);
+      //this.closeModal.emit(this.isModalOpen);
+      this.navCtrl.navigateBack('/home');
     });
+  }
 
+  actualizarStock() {
+    console.log('productos', this.productos);
+    let prodActu: Producto[] = [];
+    if(this.productos.length > 0) {
+      this.solicitud.productos.forEach((sp) => {
+        const producto = this.productos.find(p => sp.id_producto === p.id);
+        if(producto && sp.entregado === true) {
+          producto.stock_act = producto.stock_act - (sp.cantidad || 0);
+          prodActu.push(producto);
+        }        
+      });
+    }
+    console.log('Productos a actualizar',prodActu);
+    prodActu.forEach((p) => {
+      this.productosService.actualizarProducto(p);
+    });
   }
   
   backToPage() {
-    this.navCtrl.navigateBack('solicitudes-aceptadas-usuario');
+    //this.navCtrl.navigateBack('solicitudes-aceptadas-usuario');
     this.isModalOpen = false;
-    this.closeModal.emit(this.isModalOpen);
+    this.navCtrl.navigateBack('/home');
+    //this.closeModal.emit(this.isModalOpen);
     // this.solicitud.estado = 1;
     // this.solicitud.fecha_entrega = this.getCurrentDate(); 
 
@@ -84,15 +119,16 @@ export class UsuarioAceptadasComponent  implements OnInit {
 
   checkboxClick(e: any, producto: ProductoSlt) {
     console.log(e.currentTarget.checked);
-    console.log('producto', producto);
+    //console.log('producto', producto);
     for (let i = 0; i < this.solicitud.productos.length; i++) {
       if(this.solicitud.productos[i].id_producto === producto.id_producto) {
         this.solicitud.productos[i].entregado = e.currentTarget.checked;
       }
     }
+
     console.log('this.solicitud', this.solicitud);
 
-    this.productosSeleccionados.emit(this.solicitud.productos.filter(p => p.entregado));
+    //this.productosSeleccionados.emit(this.solicitud.productos.filter(p => p.entregado));
   }
   
   // checkboxClick(e: any, producto: ProductoSlt) {

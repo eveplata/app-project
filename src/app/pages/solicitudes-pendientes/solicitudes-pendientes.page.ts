@@ -33,6 +33,7 @@ export class SolicitudesPendientesPage implements OnInit {
     this.solicitudesService.getSolicitudes().subscribe((solicitudes: Solicitud[]) => {
       // Filtrar las solicitudes por estado 0, 1 y 2
       this.solicitudes = solicitudes.filter(solicitud => estadosPermitidos.includes(solicitud.estado));
+      console.log('solicitudes activas', this.solicitudes);      
       this.isLoading = false;
     });
   }
